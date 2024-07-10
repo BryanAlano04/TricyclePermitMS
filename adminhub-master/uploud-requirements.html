@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="style.css">
+	
+	<title>Upload Requirements</title>
+</head>
+<body>
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">1</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="img/profileko.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1>Upload Requirements</h1>
+				</div>
+			</div>
+
+			<div class="form-container">
+				<form>
+					<label for="document1">Document 1</label>
+					<input type="file" id="document1" name="document1" required>
+
+					<label for="document2">Document 2</label>
+					<input type="file" id="document2" name="document2" required>
+
+					<label for="document3">Document 3</label>
+					<input type="file" id="document3" name="document3" required>
+
+					<input type="submit" value="Upload">
+				</form>
+			</div>
+		</main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+</body>
+</html>
