@@ -24,24 +24,32 @@ if (isset($_POST['submit'])) {
             $mail = new PHPMailer(true);
 
             try {
-                //Server settings
-                $mail->SMTPDebug = 0;                        // Enable verbose debug output
-                $mail->isSMTP();                             // Send using SMTP
-                $mail->Host       = 'smtp.gmail.com';        // Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                    // Enable SMTP authentication
-                $mail->Username   = 'balayanbplo24@gmail.com'; // SMTP username
-                $mail->Password   = 'acsv muxe rkoq ohsu';        // SMTP password
-                $mail->SMTPSecure = 'tls';                   // Enable TLS encryption
-                $mail->Port       = 587;                     // TCP port to connect to
-                                                   //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                    //Server settings
+                    $mail->SMTPDebug = 0;
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'balayanbplo24@gmail.com';
+                    $mail->Password = 'tawn wged durl tngn';
+                    $mail->SMTPSecure = 'tls';
+                    $mail->Port = 587;
 
-                //Recipients    
-                $mail->setFrom('balayanbplo24@gmail.com', 'Bryan');
-                $mail->addAddress($email);
+                    $mail->SMTPOptions = array(
+                        'ssl' => array(
+                            'verify_peer' => false,
+                            'verify_peer_name' => false,
+                            'allow_self_signed' => true
+                        )
+                    );
+                    
+
+                    //Recipients
+                    $mail->setFrom('balayanbplo24@gmail.com', 'BPLO Balayan');
+                    $mail->addAddress($email);
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'Welecom To My Website';
-                $mail->Body    = '<p> This is the Verifecation Link<b><a href="http://localhost/coursephp/P1/Sliding/change-Password.php?Reset=' . $CodeReset . '">"http://localhost/coursephp/P1/Sliding/change-Password.php?Reset=' . $CodeReset . '"</a></b></p>';
+                $mail->Body    = '<p> This is the Verifecation Link<b><a href="http://localhost/TPMS/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '">"http://localhost/TPMS/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '"</a></b></p>';
 
                 $mail->send();
             } catch (Exception $e) {

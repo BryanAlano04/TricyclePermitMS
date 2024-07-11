@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
             
             if ($result) {
                 // Create a verification link
-                $verificationLink = 'http://localhost/login-register-form-with-email-verification-main/verify.php?Verification=' . $Code;
+                $verificationLink = 'http://localhost/TPMS/TricyclePermitMS/verify.php?Verification=' . $Code;
 
                 // Send email
                 $mail = new PHPMailer(true);
@@ -41,9 +41,18 @@ if (isset($_POST['submit'])) {
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
                     $mail->Username = 'balayanbplo24@gmail.com';
-                    $mail->Password = 'acsv muxe rkoq ohsu';
+                    $mail->Password = 'tawn wged durl tngn';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
+
+                    $mail->SMTPOptions = array(
+                        'ssl' => array(
+                            'verify_peer' => false,
+                            'verify_peer_name' => false,
+                            'allow_self_signed' => true
+                        )
+                    );
+                    
 
                     //Recipients
                     $mail->setFrom('balayanbplo24@gmail.com', 'BPLO Balayan');
@@ -161,7 +170,7 @@ if (isset($_POST['submit'])) {
                         Sign in
                     </a>
                 </div>
-                <img src="img/register.svg" class="image" alt="" />
+                <img src="tricycle.png" class="image" alt="Tricycle Image" />
             </div>
         </div>
     </div>

@@ -5,7 +5,6 @@ if (isset($_SESSION['Email_Session'])) {
   die();
 }
 
-
 include('config.php');
 $msg = "";
 $Error_Pass = "";
@@ -135,7 +134,7 @@ if (isset($_POST['submit'])) {
             Sign up
           </a>
         </div>
-        <img src="img/log.svg" class="image" alt="" />
+        <img src="tricycle2.png" class="image" alt="Tricycle Image" />
       </div>
     </div>
   </div>
