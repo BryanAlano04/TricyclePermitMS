@@ -11,7 +11,9 @@
 Fields: Name, Email, Password, Contact, Registration Plate No., Franchise No., Make, License No., Signature
 Validation: Ensure all fields are filled correctly, email format validation, unique email constraint
 Error handling: Clear error messages for invalid input
-- 1.2 Login
+- 1.2 New User
+  For new user, Please create account Using Gmail acount for security
+- 1.3 Login
 Authentication: Verify credentials (email and password)
 Forgot password: Ability to reset password via email
 ##### 2. Permit Application Process
