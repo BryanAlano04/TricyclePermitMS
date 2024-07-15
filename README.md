@@ -9,15 +9,27 @@
 
 #### 1. Create Account
 
-   - Users (tricycle drivers and admin staff) fill out a registration form with the following details:
+   - Users (tricycle drivers) fill out a registration form with the following details:
 
-     - Name
+     - Name:
 
-     - Email
+     - Email:
 
-     - Password
+     - Password:
+    
+     - Contact:
+    
+     - Registration Plate No.:
+    
+     - Franchise No.:
+    
+     - Make:
+    
+     - License No:
+    
+     - Signature:
 
-   - The system validates the information and creates the user account.
+     - The system validates the information and creates the user account.
 
 
 #### 2. User Registration and Login
