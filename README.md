@@ -6,31 +6,6 @@
 
 ### System Requirements:
 
-### Hardware Needed of the Computer System for the Development
-
-| Hardware            | Specification     | Function                                                   |
-|---------------------|-------------------|------------------------------------------------------------|
-| Random Access Memory| 8GB               | Utilized for the storage, reading, and writing of all kinds of data. |
-| Processor           | 2.40GHz           | Processes the data within the computer.                    |
-| Monitor             | 720x1280 Resolution | Displays video and graphics output produced by the computer. |
-| Mouse               | Wired or Wireless | A handheld pointing device that senses two-dimensional movement with respect to a surface. |
-| Keyboard            | Wired or Wireless | An essential input device used in conjunction with a computer. |
-
-### Software Needed for System Development
-
-| Software                         | Specification                                  | Function                                                                 |
-|----------------------------------|------------------------------------------------|--------------------------------------------------------------------------|
-| Programming Language             |                                                |                                                                          |
-| PHP                              | Display basic messages in the browser          | Executes scripts on the server side to generate dynamic web page content.|
-| HTML                             | Structures web content using tags and attributes | Defines the structure and elements of web pages.                         |
-| CSS                              | Styles web pages                               | Defines the appearance and layout of HTML elements on web pages.         |
-| Integrated Development Environment (IDE) |                                            |                                                                          |
-| Visual Studio                    | Microsoft's software for developers            | Provides tools for coding, debugging, and deploying applications.         |
-| Database                         |                                                |                                                                          |
-| MySQL                            | Capable of adding, deleting, and modifying data | Manages relational databases by handling data manipulation tasks.         |
-| Web Server                       |                                                |                                                                          |
-| XAMPP                            | A free, open-source solution stack package     | Combines Apache HTTP Server, MySQL database, and interpreters for PHP and Perl. |
-
 ##### 1. User Registration and Authentication
 - 1.1 Registration Form
 Fields: Name, Email, Password, Contact, Registration Plate No., Franchise No., Make, License No., Signature
@@ -67,6 +42,7 @@ Renewal application: Provide interface for drivers to apply for permit renewal
 ##### 6. System View and Data Visualization
 - 6.1 Dashboard for Management
 Overview: Total population of tricycle drivers with permits
+- Color-coding: Display via bar chart if the color is equal. Also, create a line chart for the revenue.
 Color-coded chart: Display permit status (green for valid, red for expired/pending)
 - 6.2 Travel Schedule Management
 Implement alternating travel schedules based on permit status color coding
