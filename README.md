@@ -4,9 +4,9 @@
   ## John Bon D. De Padua
   ## Ruzell Anne A. Del Carmen
 
-### System Requirements
+### System Requirements:
 
-#### Hardware Needed of the Computer System for the Development
+### Hardware Needed of the Computer System for the Development
 
 | Hardware            | Specification     | Function                                                   |
 |---------------------|-------------------|------------------------------------------------------------|
@@ -16,7 +16,7 @@
 | Mouse               | Wired or Wireless | A handheld pointing device that senses two-dimensional movement with respect to a surface. |
 | Keyboard            | Wired or Wireless | An essential input device used in conjunction with a computer. |
 
-#### Software Needed for System Development
+### Software Needed for System Development
 
 | Software                         | Specification                                  | Function                                                                 |
 |----------------------------------|------------------------------------------------|--------------------------------------------------------------------------|
