@@ -1,22 +1,29 @@
 <?php
-
+$current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 ?>
+
 <section id="sidebar">
     <a href="#" class="brand">
         <i class='bx bxs-buildings'></i>
         <span class="text">BPLO</span>
     </a>
     <ul class="side-menu top">
-        <li class="active">
-            <a href="#">
+        <li class="<?php echo $current_page == 'dashboard' ? 'active' : ''; ?>">
+            <a href="index.php?page=dashboard">
                 <i class='bx bxs-dashboard'></i>
                 <span class="text">Dashboard</span>
             </a>
         </li>
-        <li>
-            <a href="#">
+        <li class="<?php echo $current_page == 'applicants' ? 'active' : ''; ?>">
+            <a href="index.php?page=applicants">
                 <i class='bx bxs-shopping-bag-alt'></i>
-                <span class="text">Manage Application</span>
+                <span class="text">Applicants</span>
+            </a>
+        </li>
+        <li class="<?php echo $current_page == 'documents' ? 'active' : ''; ?>">
+            <a href="index.php?page=documents">
+                <i class='bx bxs-shopping-bag-alt'></i>
+                <span class="text">Documents</span>
             </a>
         </li>
         <li>
