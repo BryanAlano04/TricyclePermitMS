@@ -26,7 +26,7 @@ System verifies uploaded documents for authenticity and completeness
 Provide status updates to applicants via email/SMS
 ##### 3. Admin Review and Approval
 - 3.1 Review Interface
-Admin dashboard: Overview of pending applications
+Staff/Admin dashboard: Overview of pending applications
 Application review: Ability to view details and documents
 - 3.2 Approval Process
 Approval/rejection: Ability to approve or reject applications
