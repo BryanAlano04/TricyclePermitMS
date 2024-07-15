@@ -55,7 +55,7 @@ Application review: Ability to view details and documents
 Approval/rejection: Ability to approve or reject applications
 Notification: Send notification to applicants about approval status
 ##### 4. Permit Issuance
--4.1 Digital Permit Generation
+- 4.1 Digital Permit Generation
 Issue digital permits upon approval
 Notification: Notify applicants about permit issuance via email/SMS
 ##### 5. Monitoring and Renewal
