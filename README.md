@@ -6,6 +6,8 @@
 
 ### System Requirements
 
+#### Hardware Needed of the Computer System for the Development
+
 | Hardware            | Specification     | Function                                                   |
 |---------------------|-------------------|------------------------------------------------------------|
 | Random Access Memory| 8GB               | Utilized for the storage, reading, and writing of all kinds of data. |
@@ -14,82 +16,96 @@
 | Mouse               | Wired or Wireless | A handheld pointing device that senses two-dimensional movement with respect to a surface. |
 | Keyboard            | Wired or Wireless | An essential input device used in conjunction with a computer. |
 
+#### Software Needed for System Development
 
-1. User Registration and Authentication
-1.1 Registration Form
+| Software                         | Specification                                  | Function                                                                 |
+|----------------------------------|------------------------------------------------|--------------------------------------------------------------------------|
+| Programming Language             |                                                |                                                                          |
+| PHP                              | Display basic messages in the browser          | Executes scripts on the server side to generate dynamic web page content.|
+| HTML                             | Structures web content using tags and attributes | Defines the structure and elements of web pages.                         |
+| CSS                              | Styles web pages                               | Defines the appearance and layout of HTML elements on web pages.         |
+| Integrated Development Environment (IDE) |                                            |                                                                          |
+| Visual Studio                    | Microsoft's software for developers            | Provides tools for coding, debugging, and deploying applications.         |
+| Database                         |                                                |                                                                          |
+| MySQL                            | Capable of adding, deleting, and modifying data | Manages relational databases by handling data manipulation tasks.         |
+| Web Server                       |                                                |                                                                          |
+| XAMPP                            | A free, open-source solution stack package     | Combines Apache HTTP Server, MySQL database, and interpreters for PHP and Perl. |
+
+##### 1. User Registration and Authentication
+- 1.1 Registration Form
 Fields: Name, Email, Password, Contact, Registration Plate No., Franchise No., Make, License No., Signature
 Validation: Ensure all fields are filled correctly, email format validation, unique email constraint
 Error handling: Clear error messages for invalid input
-1.2 Login
+- 1.2 Login
 Authentication: Verify credentials (email and password)
 Forgot password: Ability to reset password via email
-2. Permit Application Process
-2.1 Online Application Form
+##### 2. Permit Application Process
+- 2.1 Online Application Form
 Fields: Relevant details for permit application
 Document upload: Allow upload of necessary documents
-2.2 Automated Document Verification
+- 2.2 Automated Document Verification
 System verifies uploaded documents for authenticity and completeness
-2.3 Application Status Tracking
+- 2.3 Application Status Tracking
 Provide status updates to applicants via email/SMS
-3. Admin Review and Approval
-3.1 Review Interface
+##### 3. Admin Review and Approval
+- 3.1 Review Interface
 Admin dashboard: Overview of pending applications
 Application review: Ability to view details and documents
-3.2 Approval Process
+- 3.2 Approval Process
 Approval/rejection: Ability to approve or reject applications
 Notification: Send notification to applicants about approval status
-4. Permit Issuance
-4.1 Digital Permit Generation
+##### 4. Permit Issuance
+-4.1 Digital Permit Generation
 Issue digital permits upon approval
 Notification: Notify applicants about permit issuance via email/SMS
-5. Monitoring and Renewal
-5.1 Permit Validity Tracking
+##### 5. Monitoring and Renewal
+- 5.1 Permit Validity Tracking
 Track permit validity period
 Renewal reminders: Automated reminders for permit renewal
-5.2 Renewal Process
+- 5.2 Renewal Process
 Renewal application: Provide interface for drivers to apply for permit renewal
-6. System View and Data Visualization
-6.1 Dashboard for Management
+##### 6. System View and Data Visualization
+- 6.1 Dashboard for Management
 Overview: Total population of tricycle drivers with permits
 Color-coded chart: Display permit status (green for valid, red for expired/pending)
-6.2 Travel Schedule Management
+- 6.2 Travel Schedule Management
 Implement alternating travel schedules based on permit status color coding
-7. Payment Processing
-7.1 Online Payment Integration
+###### 7. Payment Processing
+- 7.1 Online Payment Integration
 Payment gateway: Enable online payment of permit fees
 Payment status tracking: Record payment status and update permit status accordingly
-8. Security and Compliance
-8.1 Data Security
+##### 8. Security and Compliance
+- 8.1 Data Security
 Encryption: Ensure sensitive data (e.g., passwords, personal information) is encrypted
 Access control: Role-based access to system functionalities
-8.2 Compliance
+- 8.2 Compliance
 GDPR/CCPA compliance: Ensure data handling meets regulatory standards
-9. Reporting and Analytics
-9.1 Reporting
+###### 9. Reporting and Analytics
+- 9.1 Reporting
 Generate reports: e.g., application statistics, renewal rates
-9.2 Analytics
+- 9.2 Analytics
 Data visualization: Provide insights into permit distribution and status trends
-10. System Maintenance and Support
-10.1 Maintenance
+##### 10. System Maintenance and Support
+- 10.1 Maintenance
 Regular updates: Ensure system functionality and security updates
-10.2 Support
+- 10.2 Support
 Helpdesk: Provide support for users and administrators
-11. Integration Requirements
-11.1 External Systems
+##### 11. Integration Requirements
+- 11.1 External Systems
 Integration with SMS/email services for notifications
 Integration with payment gateway for online payments
-12. Usability and Accessibility
-12.1 User Interface
+##### 12. Usability and Accessibility
+- 12.1 User Interface
 Intuitive UI/UX design: Easy navigation for both drivers and administrators
-12.2 Accessibility
+- 12.2 Accessibility
 Ensure accessibility standards for users with disabilities
-13. Performance and Scalability
-13.1 Performance
+##### 13. Performance and Scalability
+- 13.1 Performance
 System responsiveness: Handle simultaneous user requests efficiently
-13.2 Scalability
+- 13.2 Scalability
 Ability to scale with increasing number of users and data
-14. Backup and Disaster Recovery
-14.1 Backup
+##### 14. Backup and Disaster Recovery
+- 14.1 Backup
 Regular data backups: Ensure data integrity and recovery
-14.2 Disaster Recovery
+- 14.2 Disaster Recovery
 Plan: Establish a plan for system recovery in case of failures or disasters
