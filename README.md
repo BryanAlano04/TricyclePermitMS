@@ -42,9 +42,9 @@ Renewal application: Provide interface for drivers to apply for permit renewal
 ##### 6. System View and Data Visualization
 - 6.1 Dashboard for Management
 Overview: Total population of tricycle drivers with permits
-- Color-coding: Display via bar chart if the color is equal. Also, create a line chart for the revenue.
-- Color-coded chart: Display permit status (green for valid, red for expired/pending)
-- 6.2 Travel Schedule Management
+- 6.2 Color-coding: Display via bar chart if the color is equal. Also, create a line chart for the revenue.
+- 6.3 Color-coded chart: Display permit status (green for valid, red for expired/pending)
+- 6.4 Travel Schedule Management
 Implement alternating travel schedules based on permit status color coding
 ###### 7. Payment Processing
 - 7.1 Online Payment Integration
