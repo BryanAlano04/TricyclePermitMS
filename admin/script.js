@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function loadPage(page) {
-        fetch(`index.php?page=${page}`)
+        fetch(`index.php?page=${page}`) // Fix: Use template literal for URL
             .then(response => response.text())
             .then(data => {
                 const parser = new DOMParser();
@@ -164,4 +164,30 @@ document.addEventListener('click', function (event) {
         sidebar.classList.add('hide');
         menuBar.setAttribute('aria-expanded', 'false');
     }
+});
+
+// JavaScript for icon button actions
+
+// View button action
+document.querySelectorAll('.view-btn').forEach(item => {
+    item.addEventListener('click', event => {
+        // Replace with your view action logic
+        console.log('View action clicked');
+    });
+});
+
+// Update button action
+document.querySelectorAll('.update-btn').forEach(item => {
+    item.addEventListener('click', event => {
+        // Replace with your update action logic
+        console.log('Update action clicked');
+    });
+});
+
+// Delete button action
+document.querySelectorAll('.delete-btn').forEach(item => {
+    item.addEventListener('click', event => {
+        // Replace with your delete action logic
+        console.log('Delete action clicked');
+    });
 });

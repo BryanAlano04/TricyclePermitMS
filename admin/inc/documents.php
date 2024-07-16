@@ -15,13 +15,13 @@
 				</li>
 			</ul>
 		</div>
-		<a href="#" class="btn-download">
+		<!-- <a href="#" class="btn-download">
 			<i class='bx bxs-cloud-download' ></i>
 			<span class="text">Download PDF</span>
-		</a>
-		<a href="#" class="btn-add">
+		</a> -->
+		<a href="#" class="btn-download">
 			<i class='bx bx-user-plus'></i>
-			<span class="text">Add User</span>
+			<span class="text">Add Documents</span>
 		</a>
 	</div>
 <div class="table-data">
@@ -41,96 +41,71 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <img src="img/profileko.png">
-                        <p>Bryan Alano</p>
-                    </td>
-                    <td>01-10-2021</td>
-                    <td><span class="status completed">Completed</span></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropbtn">Action</button>
-                            <div class="dropdown-content">
-                                <a href="#">View</a>
-                                <a href="#">Update</a>
-                                <a href="#">Delete</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="img/profileko.png">
-                        <p>Bryan Alano</p>
-                    </td>
-                    <td>01-10-2021</td>
-                    <td><span class="status pending">Pending</span></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropbtn">Action</button>
-                            <div class="dropdown-content">
-                                <a href="#">View</a>
-                                <a href="#">Update</a>
-                                <a href="#">Delete</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="img/profileko.png">
-                        <p>Bryan Alano</p>
-                    </td>
-                    <td>01-10-2021</td>
-                    <td><span class="status pending">Pending</span></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropbtn">Action</button>
-                            <div class="dropdown-content">
-                                <a href="#">View</a>
-                                <a href="#">Update</a>
-                                <a href="#">Delete</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="img/profileko.png">
-                        <p>Bryan Alano</p>
-                    </td>
-                    <td>01-10-2021</td>
-                    <td><span class="status pending">Pending</span></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropbtn">Action</button>
-                            <div class="dropdown-content">
-                                <a href="#">View</a>
-                                <a href="#">Update</a>
-                                <a href="#">Delete</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="img/profileko.png">
-                        <p>Bryan Alano</p>
-                    </td>
-                    <td>01-10-2021</td>
-                    <td><span class="status completed">Completed</span></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="dropbtn">Action</button>
-                            <div class="dropdown-content">
-                                <a href="#">View</a>
-                                <a href="#">Update</a>
-                                <a href="#">Delete</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status completed">Completed</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status pending">Pending</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status process">Process</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status pending">Pending</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status completed">Completed</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

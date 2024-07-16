@@ -3,17 +3,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-<?php include('inc/head.php'); ?>
+<?php include('inc/head.php');?>
 <body>
 
-<?php include('inc/sidebar.php'); ?>
-
+<?php include('inc/sidebar.php');?>
 <!-- CONTENT -->
 <section id="content">
-    <?php include('inc/navbar.php'); ?>
+    <?php include('inc/navbar.php');?>
     <!-- MAIN -->
     <div id="main-content">
         <?php
@@ -36,12 +34,11 @@ if (session_status() == PHP_SESSION_NONE) {
             include('inc/dashboard.php');
         }
         ?>
-    </div>
+    </div> <!-- Add this closing div tag -->
     <!-- MAIN -->
 </section>
 <!-- CONTENT -->
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="script.js"></script>
-</body>
+</body> <!-- Add this closing body tag -->
 </html>

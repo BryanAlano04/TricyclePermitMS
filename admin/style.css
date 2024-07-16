@@ -15,20 +15,20 @@ li {
 }
 
 :root {
-	--poppins: 'Poppins', sans-serif;
-	--lato: 'Lato', sans-serif;
+    --poppins: 'Poppins', sans-serif;
+    --lato: 'Lato', sans-serif;
 
-	--light: #F9F9F9;
-	--blue: #3C91E6;
-	--light-blue: #CFE8FF;
-	--grey: #eee;
-	--dark-grey: #AAAAAA;
-	--dark: #342E37;
-	--red: #DB504A;
-	--yellow: #FFCE26;
-	--light-yellow: #FFF2C6;
-	--orange: #FD7238;
-	--light-orange: #FFE0D3;
+    --light: #F9F9F9;
+    --blue: #3C91E6;
+    --light-blue: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #342E37;
+    --red: #DB504A;
+    --yellow: #FFCE26;
+    --light-yellow: #FFF2C6;
+    --orange: #FD7238;
+    --light-orange: #FFE0D3;
 }
 
 html {
@@ -76,7 +76,7 @@ body {
 	height: 56px;
 	display: flex;
 	align-items: center;
-	color: var(--blue);
+	color: var(--red);
 	position: sticky;
 	top: 0;
 	left: 0;
@@ -105,27 +105,28 @@ body {
 	background: var(--grey);
 	position: relative;
 }
-#sidebar .side-menu li.active::before {
-	content: '';
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	top: -40px;
-	right: 0;
-	box-shadow: 20px 20px 0 var(--grey);
-	z-index: -1;
+#sidebar.side-menu li.active::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: -40px;
+    right: 0;
+    box-shadow: 20px 20px 0 var(--grey);
+    z-index: -1;
 }
-#sidebar .side-menu li.active::after {
-	content: '';
-	position: absolute;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	bottom: -40px;
-	right: 0;
-	box-shadow: 20px -20px 0 var(--grey);
-	z-index: -1;
+
+#sidebar.side-menu li.active::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: -40px;
+    right: 0;
+    box-shadow: 20px -20px 0 var(--grey);
+    z-index: -1;
 }
 #sidebar .side-menu li a {
 	width: 100%;
@@ -140,17 +141,17 @@ body {
 	overflow-x: hidden;
 }
 #sidebar .side-menu.top li.active a {
-	color: var(--blue);
+	color: var(--red);
 }
 #sidebar.hide .side-menu li a {
 	width: calc(48px - (4px * 2));
 	transition: width .3s ease;
 }
 #sidebar .side-menu li a.logout {
-	color: var(--red);
+	color: var(--blue);
 }
 #sidebar .side-menu.top li a:hover {
-	color: var(--blue);
+	color: var(--red);
 }
 #sidebar .side-menu li a .bx {
 	min-width: calc(60px  - ((4px + 6px) * 2));
@@ -214,7 +215,7 @@ body {
 	transition: .3s ease;
 }
 #content nav .nav-link:hover {
-	color: var(--blue);
+	color: var(--red);
 }
 #content nav form {
 	max-width: 400px;
@@ -243,7 +244,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: var(--blue);
+	background: var(--red);
 	color: var(--light);
 	font-size: 18px;
 	border: none;
@@ -293,7 +294,7 @@ body {
 	left: 2px;
 	bottom: 2px;
 	width: calc(25px - 4px);
-	background: var(--blue);
+	background: var(--red);
 	border-radius: 50%;
 	transition: all .3s ease;
 }
@@ -340,14 +341,14 @@ body {
 	pointer-events: none;
 }
 #content main .head-title .left .breadcrumb li a.active {
-	color: var(--blue);
+	color: var(--red);
 	pointer-events: unset;
 }
 #content main .head-title .btn-download {
 	height: 36px;
 	padding: 0 16px;
 	border-radius: 36px;
-	background: var(--blue);
+	background: var(--red);
 	color: var(--light);
 	display: flex;
 	justify-content: center;
@@ -384,7 +385,7 @@ body {
 }
 #content main .box-info li:nth-child(1) .bx {
 	background: var(--light-blue);
-	color: var(--blue);
+	color: var(--red);
 }
 #content main .box-info li:nth-child(2) .bx {
 	background: var(--light-yellow);
@@ -465,16 +466,16 @@ body {
 	border-radius: 50%;
 	object-fit: cover;
 }
-#content main .table-data .order table tbody tr:hover {
+#content main .table-data .order table tbody tr:hover { 
 	background: var(--grey);
 }
-#content main .table-data .order table tr td .status {
-	font-size: 10px;
-	padding: 6px 16px;
-	color: var(--light);
-	border-radius: 20px;
-	font-weight: 700;
-}
+#content main.table-data.order table tr td.status {
+    font-size: 10px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+} 
 #content main .table-data .order table tr td .status.completed {
 	background: var(--blue);
 }
@@ -482,7 +483,7 @@ body {
 	background: var(--yellow);
 }
 #content main .table-data .order table tr td .status.pending {
-	background: var(--orange);
+	background: var(--red);
 }
 
 
@@ -507,7 +508,7 @@ body {
 	cursor: pointer;
 }
 #content main .table-data .todo .todo-list li.completed {
-	border-left: 10px solid var(--blue);
+	border-left: 10px solid var(--red);
 }
 #content main .table-data .todo .todo-list li.not-completed {
 	border-left: 10px solid var(--orange);
@@ -591,3 +592,97 @@ body {
 	}
 }
 
+/* Updated Dropdown Style */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-action {
+    background: var(--red);
+    color: var(--light);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.btn-action:hover {
+    background: var(--dark-blue); /* Define your hover color */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--light);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.dropdown-content a {
+    color: var(--dark);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--grey); /* Define your hover color */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .btn-action {
+    background-color: var(--dark-blue); /* Define your hover color */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.action-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.action-btn:hover {
+    color: #f7f9fc; /* Change color on hover */
+}
+
+.action-cell {
+    display: flex;
+	width: 10px;
+    gap: 20px; /* Adjust the gap as needed */
+}
+.action-btn:hover .delete-icon {
+    color: white;
+}
+
+.action-btn:hover .view-icon {
+    color: white;
+}
+
+.action-btn:hover .update-icon {
+    color: white;
+}
+.view-icon {
+    color: #3C91E6;
+}
+
+.update-icon {
+    color: #49d149;
+}
+
+.delete-icon {
+    color: #DB504A;
+}
