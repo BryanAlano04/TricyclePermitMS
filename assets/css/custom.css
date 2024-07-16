@@ -1,0 +1,93 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .header {
+    background: linear-gradient(180deg, rgba(44, 83, 100, 0.9), rgba(44, 83, 100, 0.7));
+    padding: 10px 0;
+  }
+  
+  .logo h1 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .navmenu {
+    list-style: none;
+  }
+  
+  .navmenu li {
+    display: inline;
+    margin-left: 20px;
+  }
+  
+  .navmenu a {
+    color: #ffffff;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .form-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .form-progress-bar {
+    width: 100%;
+    height: 5px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+  }
+  
+  .form-progress-indicator {
+    width: 20px;
+    height: 20px;
+    background-color: #f3f3f3;
+    border-radius: 50%;
+  }
+  
+  .form-progress-indicator.active {
+    background-color: #db504a;
+  }
+  
+  .fieldgroup {
+    margin-bottom: 15px;
+  }
+  
+  .fieldgroup label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .fieldgroup input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .buttons .btn {
+    padding: 10px 20px;
+    background-color: #db504a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .buttons .btn-alt {
+    background-color: #f3f3f3;
+    color: #333333;
+  }
+  
+  .buttons .btn:hover, .buttons .btn-alt:hover {
+    opacity: 0.8;
+  }
+  
