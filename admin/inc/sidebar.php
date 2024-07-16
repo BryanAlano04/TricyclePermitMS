@@ -5,7 +5,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 <section id="sidebar">
     <a href="#" class="brand">
         <i class='bx bxs-buildings'></i>
-        <span class="text">BPLO</span>
+        <span class="text">TPMS</span>
     </a>
     <ul class="side-menu top">
         <li class="<?php echo $current_page == 'dashboard' ? 'active' : ''; ?>">

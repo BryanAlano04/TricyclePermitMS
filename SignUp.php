@@ -166,7 +166,7 @@ if (isset($_POST['submit'])) {
                     <p>
                         wewfvv vrovigg eveeorgrem trut[hwr eoiejery o]
                     </p>
-                    <a href="index.php" class="btn transparent" id="sign-in-btn" style="padding:10px 20px;text-decoration:none">
+                    <a href="SignIn.php" class="btn transparent" id="sign-in-btn" style="padding:10px 20px;text-decoration:none">
                         Sign in
                     </a>
                 </div>
