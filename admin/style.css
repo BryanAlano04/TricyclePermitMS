@@ -29,6 +29,8 @@ li {
 	--light-yellow: #FFF2C6;
 	--orange: #FD7238;
 	--light-orange: #FFE0D3;
+	--light-green: #d7ffd3;
+	--green: #16d708;
 }
 
 html {
@@ -181,7 +183,7 @@ body {
 /* NAVBAR */
 #content nav {
 	height: 56px;
-	background: var(--light);
+	background: var(--red);
 	padding: 0 24px;
 	display: flex;
 	align-items: center;
@@ -243,8 +245,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: var(--red);
-	color: var(--light);
+	background: var(--light);
+	color: var(--red);
 	font-size: 18px;
 	border: none;
 	outline: none;
@@ -391,6 +393,18 @@ body {
 	color: var(--yellow);
 }
 #content main .box-info li:nth-child(3) .bx {
+	background: var(--light-orange);
+	color: var(--orange);
+}
+#content main .box-info li:nth-child(4) .bx {
+	background: var(--light-green);
+	color: var(--green);
+}
+#content main .box-info li:nth-child(5) .bx {
+	background: var(--light-orange);
+	color: var(--red);
+}
+#content main .box-info li:nth-child(6) .bx {
 	background: var(--light-orange);
 	color: var(--orange);
 }

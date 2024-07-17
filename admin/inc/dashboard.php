@@ -12,24 +12,24 @@
 				</li>
 			</ul>
 		</div>
-		<a href="#" class="btn-download">
+		<!-- <a href="#" class="btn-download">
 			<i class='bx bxs-cloud-download' ></i>
 			<span class="text">Download PDF</span>
-		</a>
+		</a> -->
 	</div>
 
 	<ul class="box-info">
 		<li>
 			<i class='bx bxs-calendar-check' ></i>
 			<span class="text">
-				<h3>1020</h3>
+				<h3>2003</h3>
 				<p>Approved Permit</p>
 			</span>
 		</li>
 		<li>
 			<i class='bx bxs-group' ></i>
 			<span class="text">
-				<h3>2834</h3>
+				<h3>2078</h3>
 				<p>Total User</p>
 			</span>
 		</li>
@@ -40,9 +40,36 @@
 				<p>Total Revenue</p>
 			</span>
 		</li>
+		<li>
+        <i class='bx bxs-id-card'></i>
+        <span class="text">
+            <h3>894</h3>
+            <p>Green Permit</p>
+        </span>
+    </li>
+    <li>
+        <i class='bx bxs-id-card' style="color: red;"></i>
+        <span class="text">
+            <h3>2078</h3>
+            <p>Red Permit</p>
+        </span>
+    </li>
 	</ul>
 
-
+	<ul class="box-info">
+	<li>
+ <!-- Bar Chart -->
+ <div class="chart-container" style="width: 100%; max-width: 600px; margin: auto;">
+    <canvas id="barChart"></canvas>
+  </div>
+		</li>
+	<li>
+  <!-- Line Chart -->
+  <div class="chart-container" style="width: 100%; max-width: 600px; margin: auto; margin-top: 20px;">
+    <canvas id="lineChart"></canvas>
+  </div>
+</li>
+</ul>
 	<div class="table-data">
 		<div class="order">
 			<div class="head">
@@ -102,7 +129,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="todo">
+		<!-- <div class="todo">
 			<div class="head">
 				<h3>Todos</h3>
 				<i class='bx bx-plus' ></i>
@@ -131,5 +158,5 @@
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 </main>

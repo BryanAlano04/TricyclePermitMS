@@ -4,7 +4,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
 <section id="sidebar">
     <a href="#" class="brand">
-        <i class='bx bxs-buildings'></i>
+    <img src="../balayan.png" alt="Balayan Logo" class="logo">
         <span class="text">TPMS</span>
     </a>
     <ul class="side-menu top">
@@ -45,7 +45,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
             </a>
         </li>
     </ul>
-    <ul class="side-menu">
+    <!-- <ul class="side-menu">
         <li>
             <a href="#">
                 <i class='bx bxs-cog'></i>
@@ -58,5 +58,7 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
                 <span class="text">Logout</span>
             </a>
         </li>
-    </ul>
+    </ul> -->
+    <input type="checkbox" id="switch-mode" hidden>
+    <label for="switch-mode" class="switch-mode"></label>
 </section>
