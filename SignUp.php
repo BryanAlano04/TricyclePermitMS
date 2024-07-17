@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
             
             if ($result) {
                 // Create a verification link
-                $verificationLink = 'http://localhost/TPMS/TricyclePermitMS/verify.php?Verification=' . $Code;
+                $verificationLink = 'http://localhost/TricyclePermitMS/TricyclePermitMS/verify.php?Verification=' . $Code;
 
                 // Send email
                 $mail = new PHPMailer(true);
@@ -85,6 +85,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
     <title>Sign in & Sign up Form</title>
     <style>
@@ -117,6 +118,7 @@ if (isset($_POST['submit'])) {
 
 <body>
     <div class="container sign-up-mode">
+    <a href="index.php" class="back-link"><i class="fas fa-arrow-left"></i></a>
         <div class="forms-container">
             <div class="signin-signup">
                 <form action="" method="POST" class="sign-up-form">
@@ -170,7 +172,7 @@ if (isset($_POST['submit'])) {
                         Sign in
                     </a>
                 </div>
-                <img src="tricycle.png" class="image" alt="Tricycle Image" />
+                <img src="logo1.png" class="image" alt="Tricycle Image" />
             </div>
         </div>
     </div>

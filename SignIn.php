@@ -45,6 +45,7 @@ if (isset($_POST['submit'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <title>Sign in & Sign up Form</title>
   <style>
@@ -83,6 +84,18 @@ if (isset($_POST['submit'])) {
       margin-left: auto;
       
     }
+    .back-link {
+        position: absolute;
+        top: 20px;
+        left: 1800px;
+        font-size: 24px;
+        color: #333; /* Adjust color as needed */
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        color: #555; /* Adjust hover color as needed */
+    }
   </style>
 </head>
 
@@ -103,7 +116,7 @@ if (isset($_POST['submit'])) {
           </div>
           <div class="Forget-Pass">
           <a href="Forget.php" class="Forget">Forget Password ?</a></div>
-          <input type="submit" name="submit" value="Login" class="btn solid" />
+          <input type="submit" name="submit" value="SignIn" class="btn solid" />
           <p class="social-text">Or Sign in with social platforms</p>
           <div class="social-media">
             <a href="#" class="social-icon">
@@ -132,6 +145,9 @@ if (isset($_POST['submit'])) {
           </p>
           <a href="SignUp.php" class="btn transparent" id="sign-in-btn" style="padding:10px 20px;text-decoration:none">
             Sign up
+          </a>
+          <a href="index.php" class="btn transparent" id="sign-in-btn" style="padding:10px 20px;text-decoration:none">
+            Back to home
           </a>
         </div>
         <img src="logo.png" class="image" alt="Tricycle Image" />

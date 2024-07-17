@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'Welecom To My Website';
-                $mail->Body    = '<p> This is the Verifecation Link<b><a href="http://localhost/TPMS/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '">"http://localhost/TPMS/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '"</a></b></p>';
+                $mail->Body    = '<p> This is the Verifecation Link<b><a href="http://localhost/TricyclePermitMS/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '">"http://localhost/TPMS/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '"</a></b></p>';
 
                 $mail->send();
             } catch (Exception $e) {
