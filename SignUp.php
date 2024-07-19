@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
             
             if ($result) {
                 // Create a verification link
-                $verificationLink = 'http://localhost/TricyclePermitMS/TricyclePermitMS/verify.php?Verification=' . $Code;
+                $verificationLink = 'http://localhost/TricyclePermitMS/verify.php?Verification=' . $Code;
 
                 // Send email
                 $mail = new PHPMailer(true);
