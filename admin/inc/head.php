@@ -56,7 +56,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 } */
 
-/* Modal styles */
 .modal-wrapper {
     display: none;
     position: fixed;
@@ -65,7 +64,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999; /* Ensure modal is on top of other content */
+    z-index: 9999; /* Ensure modal is on top of other content */
     overflow: auto; /* Allow scrolling if modal content exceeds viewport */
 }
 
@@ -77,6 +76,7 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 10000; /* Ensure modal content is above the background */
 }
 
 .head {

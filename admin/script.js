@@ -191,3 +191,122 @@ document.querySelectorAll('.delete-btn').forEach(item => {
         console.log('Delete action clicked');
     });
 });
+
+const barChartData1 = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+        label: 'Approved Permits',
+        backgroundColor: 'rgba(219, 80, 74, 0.2)', // --red with opacity
+        borderColor: 'rgba(219, 80, 74, 1)', // --red
+        borderWidth: 1,
+        data: [65, 59, 80, 81, 56, 55],
+    }]
+};
+
+const barChartData2 = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+        label: 'Pending Permits',
+        backgroundColor: 'rgba(254, 206, 38, 0.2)', // --yellow with opacity
+        borderColor: 'rgba(254, 206, 38, 1)', // --yellow
+        borderWidth: 1,
+        data: [28, 48, 40, 19, 86, 27],
+    }]
+};
+
+const lineChartData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+    datasets: [{
+        label: 'Total Revenue',
+        backgroundColor: 'rgba(60, 145, 230, 0.2)', // --blue with opacity
+        borderColor: 'rgba(60, 145, 230, 1)', // --blue
+        data: [65, 59, 80, 81, 56, 55],
+        fill: false,
+    }]
+};
+
+window.onload = function() {
+    const ctx1 = document.getElementById('barChart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'bar',
+        data: barChartData1,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+                labels: {
+                    fontColor: 'var(--dark)',
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: 'var(--dark)',
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: 'var(--dark)',
+                    }
+                }]
+            }
+        }
+    });
+
+    const ctx2 = document.getElementById('barChart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: barChartData2,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+                labels: {
+                    fontColor: 'var(--dark)',
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: 'var(--dark)',
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: 'var(--dark)',
+                    }
+                }]
+            }
+        }
+    });
+
+    const ctx3 = document.getElementById('lineChart').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: lineChartData,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+                labels: {
+                    fontColor: 'var(--dark)',
+                }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        fontColor: 'var(--dark)',
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: 'var(--dark)',
+                    }
+                }]
+            }
+        }
+    });
+};

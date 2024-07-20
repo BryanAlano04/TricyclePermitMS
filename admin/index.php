@@ -77,8 +77,6 @@ $(document).ready(function() {
     });
 });
 
-
-
 </script>
 </body> <!-- Add this closing body tag -->
 </html>
