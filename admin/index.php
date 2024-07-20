@@ -38,72 +38,47 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- MAIN -->
 </section>
 <!-- CONTENT -->
+ <!-- Modal structure -->
+<div class="modal-wrapper">
+    <div class="modal">
+        <!-- modal content -->
+        <div class="content">
+        <div class="container d-flex justify-content-center pt-2">
+
+          <a class="btn-close" href="#">
+        <i class="fa fa-times" aria-hidden="true"></i> Close
+    </a>
+  </div>
+  </div>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<!-- Bootstrap 5 JS -->
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'></script>
+<!-- Multi-step Form JS -->
+<script src="js/bootstrap-multi-step-form.js"></script>
+
+  <!-- Main JS File -->
+  <script src="../assets/js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="script.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const ctxBar = document.getElementById('barChart').getContext('2d');
-    const ctxLine = document.getElementById('lineChart').getContext('2d');
-
-    const barChart = new Chart(ctxBar, {
-      type: 'bar',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May'],
-        datasets: [{
-          label: 'Approved Permits',
-          data: [12, 19, 3, 5, 2],
-          backgroundColor: 'rgba(219, 80, 74, 0.2)',
-          borderColor: 'rgba(219, 80, 74, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: 'var(--dark)'
-            }
-          }
-        }
-      }
+$(document).ready(function() {
+    $('#add-applicants-btn').on('click', function(e) {
+        e.preventDefault();
+        $('.modal-wrapper').fadeIn();
+        $('body').addClass('blur-it');
     });
 
-    const lineChart = new Chart(ctxLine, {
-      type: 'line',
-      data: {
-        labels: ['January', 'February', 'March', 'April', 'May'],
-        datasets: [{
-          label: 'Total Revenue',
-          data: [3000, 4000, 2000, 5000, 7000],
-          backgroundColor: 'rgba(219, 80, 74, 0.2)',
-          borderColor: 'rgba(219, 80, 74, 1)',
-          borderWidth: 2,
-          fill: true,
-          tension: 0.4
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: 'var(--dark)'
-            }
-          }
-        }
-      }
+    $('.btn-close').on('click', function(e) {
+        e.preventDefault();
+        $('.modal-wrapper').fadeOut();
+        $('body').removeClass('blur-it');
     });
-  });
+});
+
+
+
 </script>
-
 </body> <!-- Add this closing body tag -->
 </html>

@@ -12,10 +12,10 @@
 				</li>
 			</ul>
 		</div>
-		<a href="#" class="btn-download">
-			<i class='bx bx-user-plus'></i>
-			<span class="text">Add Appliants</span>
-		</a>
+		<a href="#" class="btn-download" id="add-applicants-btn">
+            <i class='bx bx-user-plus'></i>
+            <span class="text">Add Applicants</span>
+        </a>
 	</div>
 <div class="table-data">
     <div class="order">

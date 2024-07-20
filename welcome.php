@@ -67,7 +67,7 @@ if (isset($_POST['logout'])) {
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'>
     
 	<!-- Demo CSS -->
-	<link rel="stylesheet" href="css/demo.css">
+	<!-- <link rel="stylesheet" href="css/demo.css"> -->
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -584,7 +584,7 @@ if (isset($_POST['logout'])) {
 <!-- Bootstrap 5 JS -->
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'></script>
 <!-- Multi-step Form JS -->
-<script src="js/bootstrap-multi-step-form.js"></script>
+<!-- <script src="js/bootstrap-multi-step-form.js"></script> -->
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>

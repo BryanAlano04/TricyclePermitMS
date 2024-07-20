@@ -28,7 +28,7 @@ body{
    font-size: 14px;
 }
 
-.intro .action{
+.action{
    text-align: center;
    display: block;
    margin-top: 20px;
@@ -112,7 +112,7 @@ article p{
     line-height: 1.5;
 }
  
-@media only screen and (min-width: 1280px){
+@media only screen and (min-width: 720px){
     main{
       max-width: 720px;
       margin-left: auto;
