@@ -3,11 +3,11 @@ include('config.php');
 
 if (isset($_GET['Verification'])) {
     $verificationCode = $_GET['Verification'];
-    $query = mysqli_query($conx, "UPDATE register SET verification='1' WHERE CodeV='{$verificationCode}'");
+    $query = mysqli_query($conx, "UPDATE user SET active='1' WHERE token='{$verificationCode}'");
 
     if ($query) {
         // Optional: Fetch user details for further processing
-        $result = mysqli_query($conx, "SELECT * FROM register WHERE CodeV='{$verificationCode}'");
+        $result = mysqli_query($conx, "SELECT * FROM user WHERE token='{$verificationCode}'");
         $user = mysqli_fetch_assoc($result);
 
         // Redirect to login page with a success message or directly to welcome page

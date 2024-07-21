@@ -18,8 +18,8 @@ $msg = "";
 if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conx, $_POST['email']);
     $CodeReset = mysqli_real_escape_string($conx, md5(rand()));
-    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM register WHERE email='{$email}'")) > 0) {
-        $query = mysqli_query($conx, "UPDATE register SET CodeV='{$CodeReset}' WHERE email='{$email}'");
+    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM user WHERE email='{$email}'")) > 0) {
+        $query = mysqli_query($conx, "UPDATE user SET token='{$CodeReset}' WHERE email='{$email}'");
         if ($query) {
             $mail = new PHPMailer(true);
 

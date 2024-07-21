@@ -56,62 +56,75 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 } */
 
-.modal-wrapper {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 9999; /* Ensure modal is on top of other content */
-    overflow: auto; /* Allow scrolling if modal content exceeds viewport */
-}
-
+/* CSS for Modal */
+/* CSS for Modal */
 .modal {
-    background-color: #fff;
-    width: 60%;
-    max-width: 600px;
-    margin: 10% auto;
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 10000; /* Ensure modal content is above the background */
+    border: 1px solid #888;
+    width: 40%; 
 }
 
-.head {
-    text-align: right;
-}
-
-.btn-close {
-    font-size: 24px;
+.close {
     color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
     text-decoration: none;
-    transition: color 0.3s;
+    cursor: pointer;
 }
 
-.btn-close:hover {
-    color: #333;
+.input-field {
+    margin-bottom: 15px;
 }
 
-.content {
-    padding: 20px;
+.input-field label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-.good-job {
-    text-align: center;
-    color: #3498db;
+.input-field input,
+.input-field select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.good-job .fa-thumbs-o-up {
-    font-size: 48px;
+.alert {
+    padding: 1rem;
+    border-radius: 5px;
+    color: white;
+    margin: 1rem 0;
+    font-weight: 500;
 }
 
-.good-job h1 {
-    font-size: 24px;
-    margin-top: 10px;
+.alert-info {
+    background-color: #2E9AFE;
 }
 
+.alert-danger {
+    background-color: #fc5555;
+}
 
 </style>
 	<title>Tricycle Permit MS</title>

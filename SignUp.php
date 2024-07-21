@@ -17,20 +17,21 @@ $Error_Pass = "";
 if (isset($_POST['submit'])) {
     $name = mysqli_real_escape_string($conx, $_POST['Username']);
     $email = mysqli_real_escape_string($conx, $_POST['Email']);
-    $Password = mysqli_real_escape_string($conx, md5($_POST['Password']));
+    $password = mysqli_real_escape_string($conx, md5($_POST['Password']));
     $Confirm_Password = mysqli_real_escape_string($conx, md5($_POST['Conf-Password']));
-    $Code = md5(rand()); // Generate a unique verification code
+    $token = md5(rand()); // Generate a unique verification code
+    $role = 'user'; // Default role
 
-    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM register where email='{$email}'")) > 0) {
+    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM user WHERE email='{$email}'")) > 0) {
         $msg = "<div class='alert alert-danger'>This Email: '{$email}' has already been registered.</div>";
     } else {
-        if ($Password === $Confirm_Password) {
-            $query = "INSERT INTO register(`Username`, `email`, `Password`, `CodeV`, `verification`) values('$name','$email','$Password','$Code', '0')";
+        if ($password === $Confirm_Password) {
+            $query = "INSERT INTO user(`email`, `password`, `username`, `token`, `active`, `role`) VALUES ('$email', '$password', '$name', '$token', '0', '$role')";
             $result = mysqli_query($conx, $query);
             
             if ($result) {
                 // Create a verification link
-                $verificationLink = 'http://localhost/TricyclePermitMS/verify.php?Verification=' . $Code;
+                $verificationLink = 'http://localhost/TricyclePermitMS/verify.php?Verification=' . $token;
 
                 // Send email
                 $mail = new PHPMailer(true);
@@ -53,7 +54,6 @@ if (isset($_POST['submit'])) {
                         )
                     );
                     
-
                     //Recipients
                     $mail->setFrom('balayanbplo24@gmail.com', 'BPLO Balayan');
                     $mail->addAddress($email, $name);

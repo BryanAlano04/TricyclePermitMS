@@ -38,6 +38,12 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
                 <span class="text">Message</span>
             </a>
         </li>
+        <li class="<?php echo $current_page == 'user' ? 'active' : ''; ?>">
+            <a href="index.php?page=user">
+                <i class='bx bxs-group'></i>
+                <span class="text">user</span>
+            </a>
+        </li>
         <li>
             <a href="#">
                 <i class='bx bxs-group'></i>

@@ -8,12 +8,12 @@ include('config.php');
 $msg = "";
 $error = "";
 if (isset($_GET['Reset'])) {
-    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM register WHERE CodeV='{$_GET['Reset']}'")) > 0) {
+    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM user WHERE token='{$_GET['Reset']}'")) > 0) {
         if (isset($_POST['submit'])) {
             $Pass = mysqli_real_escape_string($conx, $_POST['Password']);
             $Confirme_Pass = mysqli_real_escape_string($conx, $_POST['Conf-Password']);
             if ($Pass === $Confirme_Pass) {
-                $sql = "UPDATE register SET Password ='" . md5($Pass) . "' WHERE CodeV='{$_GET['Reset']}'";
+                $sql = "UPDATE user SET Password ='" . md5($Pass) . "' WHERE token='{$_GET['Reset']}'";
                 $result = mysqli_query($conx, $sql);
                 if ($result) {
                     header("Location: welcome.php");
