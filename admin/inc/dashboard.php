@@ -56,20 +56,20 @@
     </li>
 	</ul>
 
-	<ul class="box-info">
-	<li>
- <!-- Bar Chart -->
+	<!-- <ul class="box-info">
+<li>
+
  <div class="chart-container" style="width: 100%; max-width: 600px; margin: auto;">
     <canvas id="barChart"></canvas>
   </div>
 		</li>
 	<li>
-  <!-- Line Chart -->
+
   <div class="chart-container" style="width: 100%; max-width: 600px; margin: auto; margin-top: 20px;">
     <canvas id="lineChart"></canvas>
   </div>
 </li>
-</ul>
+</ul> -->
 	<div class="table-data">
 		<div class="order">
 			<div class="head">

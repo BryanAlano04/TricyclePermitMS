@@ -1,7 +1,14 @@
 <?php
-// error_reporting(0); // Disable all error reporting
-// ini_set('display_errors', 0); // Hide errors on the page
-include('../../config.php'); // Adjust the path as needed
+error_reporting(0); // Disable all error reporting
+ini_set('display_errors', 0); // Hide errors on the page
+if (!isset($_SESSION['Email_Session'])) {
+    echo "User not logged in";
+    exit();
+}
+
+// Get current user's role
+$currentUserRole = $_SESSION['role'];
+include('../../config.php'); // Adjust the path as needed   
 
 // Debugging step: Check if $conx is set and a valid connection
 if (!isset($conx) || !$conx) {
@@ -33,22 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "Error: " . mysqli_error($conx);
             }
         }
-        if (isset($_GET['delete'])) {
-            $id = $_GET['delete'];
-            $query = "DELETE FROM user WHERE id = '$id'";
-            if (mysqli_query($conx, $query)) {
-                echo "User deleted successfully.";
-            } else {
-                echo "Error deleting user: " . mysqli_error($conx);
-            }
-        }
     } else {
         echo "Invalid form submission.";
     }
 }
 
 // Fetch user data for display
-$query = "SELECT id, username, email, role, created_at, active FROM user";
+if ($currentUserRole === 'admin') {
+    $query = "SELECT id, username, email, role, created_at, active FROM user";
+} else if ($currentUserRole === 'verifier') {
+    $query = "SELECT id, username, email, role, created_at, active FROM user WHERE role = 'user'";
+}
 $result = mysqli_query($conx, $query);
 
 // Ensure that the query was successful
@@ -59,16 +61,16 @@ if (!$result) {
 <main>
 <div class="head-title">
     <div class="left">
-        <h1>Applicants</h1>
+        <h1>Users</h1>
         <ul class="breadcrumb">
-            <li><a href="#">Applicants</a></li>
+            <li><a href="#">Users</a></li>
             <li><i class='bx bx-chevron-right'></i></li>
             <li><a class="active" href="#">Home</a></li>
         </ul>
     </div>
     <a href="#" class="btn-download" id="add-applicants-btn">
         <i class='bx bx-user-plus'></i>
-        <span class="text">Add Applicants</span>
+        <span class="text">Add Users</span>
     </a>
 </div>
 <div class="table-data">
@@ -92,33 +94,38 @@ if (!$result) {
                 <?php
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $status = $row['active']? 'Active' : 'Inactive';
+                        $status = $row['active'] ? 'Active' : 'Inactive';
+                        $statusClass = $row['active'] ? 'status active' : 'status inactive';
                         echo "<tr>
                                 <td>{$row['username']}</td>
                                 <td>{$row['created_at']}</td>
-                                <td>{$status}</td>
+                                <td><span class='{$statusClass}'>{$status}</span></td>
                                 <td>{$row['role']}</td>
                                 <td>
-                                    <button class='btn btn-edit' data-id='{$row['id']}'>Edit</button> 
-                                    <button class='btn btn-delete' data-id='{$row['id']}'>Delete</button>
+                                    <button class='action-btn view-btn' title='View'><i class='bx bx-show view-icon'></i></button>
+                                    <button class='action-btn btn-edit' title='Edit' data-id='{$row['id']}'><i class='bx bxs-edit-alt update-icon'></i></button>
+                                    <button class='action-btn btn-delete' titl='Delete' data-id='{$row['id']}'><i class='bx bx-trash delete-icon'></i></button>
                                 </td>
                             </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='5'>No users found</td></tr>";
                 }
-            ?>
+                ?>
             </tbody>
         </table>
     </div>
 </div>
 </main>
 
+<!-- Overlay -->
+<div id="overlay" class="overlay" style="display: none;"></div>
+
 <!-- Modal -->
 <div id="add-applicants-modal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Add Account</h2>
+        <h2 style="font-family: var(--poppins);">Add Account</h2>
         <form id="add-account-form">
             <div class="input-field">
                 <label for="username">Username</label>
@@ -131,24 +138,31 @@ if (!$result) {
             <div class="input-field">
                 <label for="role">Role</label>
                 <select id="role" name="role" required>
-                    <option value="admin">Admin</option>
-                    <option value="verifier">Verifier</option>
+                    <?php if ($currentUserRole === 'admin'): ?>
+                        <option value="admin">Admin</option>
+                        <option value="verifier">Verifier</option>
+                    <?php endif; ?>
+                    <option value="user">User</option>
                 </select>
             </div>
             <div class="input-field">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">Create Account</button>
+            <div class="button-group">
+                <button class="btn-download" type="button" id="cancel-button">Cancel</button>
+                <button class="btn-submit" type="submit">Create Account</button>
+            </div>
         </form>
         <div id="message"></div>
     </div>
 </div>
+
 <!-- Edit Modal -->
 <div id="edit-applicants-modal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Edit Account</h2>
+        <h2 style="font-family: var(--poppins);">Edit Account</h2>
         <form id="edit-account-form">
             <input type="hidden" id="edit-id" name="id">
             <div class="input-field">
@@ -162,8 +176,11 @@ if (!$result) {
             <div class="input-field">
                 <label for="edit-role">Role</label>
                 <select id="edit-role" name="role" required>
-                    <option value="admin">Admin</option>
-                    <option value="verifier">Verifier</option>
+                    <?php if ($currentUserRole === 'admin'): ?>
+                        <option value="admin">Admin</option>
+                        <option value="verifier">Verifier</option>
+                    <?php endif; ?>
+                    <option value="user">User</option>
                 </select>
             </div>
             <div class="input-field">
@@ -173,7 +190,10 @@ if (!$result) {
                     <option value="0">Inactive</option>
                 </select>
             </div>
-            <button type="submit">Update Account</button>
+            <div class="button-group">
+                <button class="btn-download" type="button" id="edit-cancel-button">Cancel</button>
+                <button class="btn-submit" type="submit">Update Account</button>
+            </div>
         </form>
         <div id="edit-message"></div>
     </div>

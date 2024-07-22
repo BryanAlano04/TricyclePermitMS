@@ -31,6 +31,7 @@ li {
 	--light-orange: #FFE0D3;
 	--light-green: #d7ffd3;
 	--green: #16d708;
+	--darkgreen: #0e9b04;
 }
 
 html {
@@ -496,6 +497,12 @@ body {
 	background: var(--yellow);
 }
 #content main .table-data .order table tr td .status.pending {
+	background: var(--red);
+}
+#content main .table-data .order table tr td .status.active {
+	background: var(--blue);
+}
+#content main .table-data .order table tr td .status.inactive {
 	background: var(--red);
 }
 

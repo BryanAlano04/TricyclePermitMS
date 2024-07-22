@@ -2,7 +2,6 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 include('../config.php'); // Correct include path for config.php
 ?>
 <!DOCTYPE html>
@@ -28,6 +27,9 @@ include('../config.php'); // Correct include path for config.php
                     break;
                 case 'documents':
                     include('inc/documents.php');
+                    break;
+                case 'permit':
+                    include('inc/permit.php');
                     break;
                 case 'user':
                     include('inc/user.php');
@@ -68,15 +70,28 @@ include('../config.php'); // Correct include path for config.php
 <script src="script.js"></script>
 
 <script>
- // JavaScript for Modal Handling and Form Submission
+// JavaScript for Modal Handling and Form Submission
 document.getElementById('add-applicants-btn').onclick = function() {
+    document.getElementById('overlay').style.display = 'block';
     document.getElementById('add-applicants-modal').style.display = 'block';
 };
 
-document.querySelector('.close').onclick = function() {
-    document.getElementById('add-applicants-modal').style.display = 'none';
-};
+document.querySelectorAll('.close').forEach(button => {
+    button.onclick = function() {
+        this.closest('.modal').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    };
+});
 
+document.getElementById('cancel-button').addEventListener('click', function() {
+    document.getElementById('add-applicants-modal').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+});
+
+document.getElementById('edit-cancel-button').addEventListener('click', function() {
+    document.getElementById('edit-applicants-modal').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+});
 document.getElementById('add-account-form').onsubmit = function(event) {
     event.preventDefault();
 
@@ -123,24 +138,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.querySelectorAll('.btn-delete').forEach(button => {
-    button.addEventListener('click', function() {
-        if (confirm('Are you sure you want to delete this user?')) {
-            let userId = this.dataset.id;
-            let xhr = new XMLHttpRequest();
-            xhr.open('POST', 'inc/delete_user.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    alert('User deleted successfully.');
-                    location.reload(); // Reload the page to reflect changes
-                } else {
-                    alert('Error deleting user.');
-                }
-            };
-            xhr.send(`id=${userId}`);
-        }
+        button.addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete this user?')) {
+                let userId = this.dataset.id;
+                let xhr = new XMLHttpRequest();
+                xhr.open('POST', 'inc/delete_user.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        alert('User deleted successfully.');
+                        location.reload(); // Reload the page to reflect changes
+                    } else {
+                        alert('Error deleting user.');
+                    }
+                };
+                xhr.send(`id=${userId}`);
+            }
+        });
     });
-});
 });
 
 document.getElementById('edit-account-form').onsubmit = function(event) {
@@ -168,6 +183,29 @@ document.getElementById('edit-account-form').onsubmit = function(event) {
     xhr.send(`id=${encodeURIComponent(id)}&username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&role=${encodeURIComponent(role)}&active=${encodeURIComponent(active)}`);
 };
 
-    </script>
+// Function to generate the permit and show the modal
+function generatePermit(ownerName, driverName, driverAddress, driverContact, plateNo, franchiseNo) {
+    document.getElementById('ownerName').innerText = ownerName;
+    document.getElementById('driverName').innerText = driverName;
+    document.getElementById('driverAddress').innerText = driverAddress;
+    document.getElementById('driverContact').innerText = driverContact;
+    document.getElementById('plateNo').innerText = plateNo;
+    document.getElementById('franchiseNo').innerText = franchiseNo;
+
+    // Show the modal
+    document.getElementById('edit-applicants-modal').style.display = 'block';
+
+    // Ensure permit container is visible
+    document.getElementById('permitContainer').style.display = 'block';
+}
+
+// Function to print the permit
+function printPermit() {
+    window.print();
+}
+
+
+
+</script>
 </body> <!-- Add this closing body tag -->
 </html>

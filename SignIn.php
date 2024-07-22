@@ -1,58 +1,70 @@
 <?php
-session_start();
+session_start(); // Start the session
+
+// Check if user is already logged in
 if (isset($_SESSION['Email_Session'])) {
-  header("Location: welcome.php");
-  die();
+    header("Location: welcome.php");
+    exit();
 }
 
 include('config.php');
 
 $msg = "";
+
+// Handle account verification
 if (isset($_GET['Verification'])) {
-  $raquet = mysqli_query($conx, "SELECT * FROM user WHERE token='{$_GET['Verification']}'");
-  if (mysqli_num_rows($raquet) > 0) {
-    $query = mysqli_query($conx, "UPDATE user SET active='1' WHERE token='{$_GET['Verification']}'");
-    if ($query) {
-      $rowv = mysqli_fetch_assoc($raquet);
-      header("Location: welcome.php?id='{$rowv['id']}'");
+    $verificationToken = mysqli_real_escape_string($conx, $_GET['Verification']);
+    $raquet = mysqli_query($conx, "SELECT * FROM user WHERE token='{$verificationToken}'");
+
+    if (mysqli_num_rows($raquet) > 0) {
+        $query = mysqli_query($conx, "UPDATE user SET active='1' WHERE token='{$verificationToken}'");
+        if ($query) {
+            $rowv = mysqli_fetch_assoc($raquet);
+            header("Location: welcome.php?id={$rowv['id']}");
+            exit();
+        } else {
+            header("Location: index.php");
+            exit();
+        }
     } else {
-      header("Location: index.php");
+        header("Location: index.php");
+        exit();
     }
-  } else {
-    header("Location: index.php");
-  }
 }
 
+// Handle user login
 if (isset($_POST['submit'])) {
-  $email = mysqli_real_escape_string($conx, $_POST['email']);
-  $Pass = mysqli_real_escape_string($conx, md5($_POST['Password']));
-  $sql = "SELECT * FROM user WHERE email='{$email}' and password='{$Pass}'";
-  $resulte = mysqli_query($conx, $sql);
+    $input = mysqli_real_escape_string($conx, $_POST['email']); // Use a generic variable for input
+    $password = mysqli_real_escape_string($conx, md5($_POST['Password']));
 
-  if (mysqli_num_rows($resulte) === 1) {
-    $row = mysqli_fetch_assoc($resulte);
-    if ($row['active'] === '1') {
-      $_SESSION['Email_Session'] = $email;
-      $_SESSION['role'] = $row['role']; // Save role in session
+    // Query to check if the input matches email or username
+    $sql = "SELECT * FROM user WHERE (email='{$input}' OR username='{$input}') AND password='{$password}'";
+    $result = mysqli_query($conx, $sql);
 
-      // Redirect based on role
-      switch ($row['role']) {
-        case 'admin':
-          header("Location: admin_dashboard.php");
-          break;
-        case 'verifier':
-          header("Location: verifier_dashboard.php");
-          break;
-        default:
-          header("Location: welcome.php");
-      }
-      exit();
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        if ($row['active'] === '1') {
+            $_SESSION['Email_Session'] = $row['email']; // Store email in session
+            $_SESSION['role'] = $row['role']; // Save role in session
+            
+            // Redirect based on role
+            switch ($row['role']) {
+                case 'admin':
+                    header("Location: admin/index.php");
+                    break;
+                case 'verifier':
+                    header("Location: admin/index.php");
+                    break;
+                default:
+                    header("Location: welcome.php");
+            }
+            exit();
+        } else {
+            $msg = "<div class='alert alert-info'>Please verify your account first.</div>";
+        }
     } else {
-      $msg = "<div class='alert alert-info'>Please verify your account first.</div>";
+        $msg = "<div class='alert alert-danger'>Email/Username or Password is incorrect.</div>";
     }
-  } else {
-    $msg = "<div class='alert alert-danger'>Email or Password is incorrect.</div>";
-  }
 }
 ?>
 <!DOCTYPE html>
@@ -92,14 +104,14 @@ if (isset($_POST['submit'])) {
           <?php echo $msg ?>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" name="email" placeholder="Email" required />
+            <input type="text" name="email" placeholder="Email or Username" required />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" name="Password" placeholder="Password" required />
           </div>
           <div class="Forget-Pass">
-            <a href="Forget.php" class="Forget">Forget Password ?</a>
+            <a href="Forget.php" class="Forget">Forget Password?</a>
           </div>
           <input type="submit" name="submit" value="Sign In" class="btn solid" />
           <p class="social-text">Or Sign in with social platforms</p>

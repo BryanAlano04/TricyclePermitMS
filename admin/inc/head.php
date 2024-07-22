@@ -31,7 +31,7 @@
     object-fit: cover; /* Ensures the image covers the space without stretching */
     border-radius: 50%; /* Optional: makes the image circular */
     margin-right: 10px;
-		margin-left: 10px; /* Adjust spacing between the logo and text */
+	margin-left: 10px; /* Adjust spacing between the logo and text */
 }
 
 .text {
@@ -39,14 +39,43 @@
 }	
 
 /* @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700); */
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
 
 .btn-download {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    background: var(--red);
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-submit {
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 36px;
+    background: var(--blue);
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 10px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    outline: none;
 }
 
 /* .table-data {
@@ -69,6 +98,8 @@
     overflow: auto; 
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
+    font-family: var(--poppins);
+    z-index: 9999;
 }
 
 .modal-content {
@@ -76,7 +107,9 @@
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 40%; 
+    width: 80%; 
+	border-radius: 20px;
+    z-index: 9999;
 }
 
 .close {
@@ -107,7 +140,8 @@
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 36px;
+
 }
 
 .alert {
@@ -125,6 +159,7 @@
 .alert-danger {
     background-color: #fc5555;
 }
+
 
 </style>
 	<title>Tricycle Permit MS</title>
