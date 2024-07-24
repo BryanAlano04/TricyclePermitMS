@@ -129,8 +129,6 @@ if (isset($_POST['submit'])) {
                 </form>
             </div>
         </div>
-
-        
     </div>
 
     <script src="app.js"></script>

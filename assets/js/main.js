@@ -249,3 +249,132 @@ document.addEventListener('DOMContentLoaded', function () {
       progressBar.value = progressValue;
   }
 });
+
+
+// Add this to your main.js or a separate script file
+
+// Function to show modal
+function showModal(modalId) {
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById(modalId).style.display = 'block';
+}
+
+// Function to hide modal
+function hideModal(modalId) {
+  document.getElementById(modalId).style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+}
+
+document.getElementById('add-applicants-btn').onclick = function() {
+  showModal('add-applicants-modal');
+};
+
+document.getElementById('edit-applicants-btn').onclick = function() {
+  showModal('edit-applicants-modal');
+};
+
+document.querySelectorAll('.close').forEach(button => {
+  button.onclick = function() {
+    hideModal(this.closest('.modal').id);
+  };
+});
+
+document.getElementById('overlay').onclick = function() {
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.style.display = 'none';
+  });
+  this.style.display = 'none';
+};
+
+function showSignInForm() {
+  document.getElementById('signInForm').style.display = 'block';
+  document.getElementById('signUpForm').style.display = 'none';
+  document.getElementById('forgetPasswordForm').style.display = 'none';
+}
+
+function showSignUpForm() {
+  document.getElementById('signInForm').style.display = 'none';
+  document.getElementById('signUpForm').style.display = 'block';
+  document.getElementById('forgetPasswordForm').style.display = 'none';
+}
+
+function showForgetPasswordForm() {
+  document.getElementById('signInForm').style.display = 'none';
+  document.getElementById('signUpForm').style.display = 'none';
+  document.getElementById('forgetPasswordForm').style.display = 'block';
+}
+
+// Ensure the Sign In form is shown when the modal is triggered
+$('#signInModal').on('shown.bs.modal', function () {
+  showSignInForm(); // Show Sign In form when modal is opened
+});
+
+// document.addEventListener("DOMContentLoaded", function() {
+//   const form = document.getElementById('forgetPasswordForm');
+//   const messageDiv = document.getElementById('message');
+
+//   form.addEventListener('submit', function(event) {
+//       event.preventDefault(); // Prevent the default form submission
+      
+//       const formData = new FormData(form); // Create FormData object from the form
+
+//       fetch('index.php', { // The PHP script handling the form
+//           method: 'POST',
+//           body: formData
+//       })
+//       .then(response => response.text()) // Handle the response from the server
+//       .then(data => {
+//           messageDiv.innerHTML = data; // Display the message returned from the server
+//       })
+//       .catch(error => {
+//           console.error('Error:', error); // Log any errors
+//       });
+//   });
+// });
+
+
+
+
+
+
+
+
+
+$(document).ready(function() {
+  var currentStep = 0;
+  var steps = $(".step");
+  var indicators = $(".step-indicators .indicator");
+
+  function showStep(index) {
+      steps.removeClass("active");
+      $(steps[index]).addClass("active");
+      indicators.removeClass("completed");
+      indicators.each(function(i) {
+          if (i <= index) {
+              $(this).addClass("completed");
+          }
+      });
+  }
+
+  $(".btn-next").click(function() {
+      if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+      }
+  });
+
+  $(".btn-prev").click(function() {
+      if (currentStep > 0) {
+          currentStep--;
+          showStep(currentStep);
+      }
+  });
+
+  $("#multiStepForm").submit(function(event) {
+      event.preventDefault();
+      alert("Form submitted!");
+  });
+}); 
+
+
+

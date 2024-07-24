@@ -11,7 +11,7 @@ if (!isset($_SESSION['Email_Session'])) {
 if (isset($_POST['logout'])) {
     session_unset();
     session_destroy();
-    header("Location: SignIn.php"); // Redirect to sign-in page after logout
+    header("Location: index.php"); // Redirect to sign-in page after logout
     exit();
 }
 ?>
@@ -71,239 +71,7 @@ if (isset($_POST['logout'])) {
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- <style>
-        body {
-            background: rgba(0,0,0,.1);
-            line-height: 1.45rem;
-            color: #444;
-        }
-
-        h1 {
-            margin: 0;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-weight: normal;
-            line-height: 2.2rem;
-        }
-
-        .section {
-            max-width: 500px;
-            padding: 4rem;
-            margin: 5vh auto 0 auto;
-            background: white;
-            box-shadow: 0 1px 2px rgba(0,0,0,.3);
-            position: relative;
-        }
-
-        .section:before {
-            content: "";
-            width: 100%;
-            background: #a1d3a2;
-            height: 170px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            border-bottom: 1px solid rgba(0,0,0,.2);
-        }
-
-        .form-instructions {
-            text-align: center;
-        }
-
-        form {
-            margin: 2rem auto;
-            width: 100%;  
-            max-width: 330px; 
-            will-change: transform;
-        }
-
-        .fieldgroup {
-            margin: 1.5rem 0;
-            position: relative;
-        }
-
-        label {
-            position: absolute;
-            top: .8rem; 
-            left: 0;
-            display: block;
-            font-size: 1rem;
-            opacity: .5;
-            will-change: top, font-size;
-            transition: .2s ease-out;
-        }
-
-        input {
-            border: 1px solid #fff;
-            font-size: 1.2rem;
-            padding: .6rem;
-            padding-left: 0;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #444;
-            width: calc(100% - .6rem);
-            max-width: 350px;
-            transition: .2s;
-            border-radius: 0;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-        input:valid {
-            border-color: #444;
-        }
-
-        input:focus + label,
-        input.hasInput + label {
-            top: -.8rem;
-            font-size: .7rem;
-        }
-
-        .btn {
-            color: #fff;
-            background-color: rgb(11, 204, 108);
-            padding: .8rem;
-            font-size: 1.2rem;
-            line-height: 1.2rem;
-            border-radius: 5px;
-            border: 2px solid transparent;
-            min-width: 45px !important;
-        }
-
-        .btn:hover {
-            color: #fff;
-            text-shadow: 0 1px 3px rgba(0,0,0,.3);
-            transition: .2s;
-        }
-
-        .btn:active {
-            color: #fff;
-            background-color: darken(rgb(11, 204, 108), 20%);
-            box-shadow: inset 0 2px 10px rgba(0,0,0,.3);
-            outline: 2px solid rgb(11, 204, 108);
-        }
-
-        .btn-alt {
-            background-color: transparent;
-            color: rgb(11, 204, 108);
-            border: 2px solid rgb(11, 204, 108);
-        }
-
-        .btn-alt:hover {
-            background-color: transparent;
-            color: darken(rgb(11, 204, 108), 40%);
-            border-color: darken(rgb(11, 204, 108), 40%);
-        }
-
-        .form-progress {
-            position: relative;
-            display: block;
-            margin: 3rem auto;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        progress {
-            display: block;
-            position: relative;
-            top: 5px;
-            left: 5px;
-            appearance: none;
-            background: rgb(11, 204, 108);
-            width: 100%;
-            height: 5px;
-            background: none;
-            transition: 1s;
-        }
-
-        progress::-webkit-progress-bar {
-            background-color: #ddd;
-        }
-
-        progress::-webkit-progress-value {
-            background-color: rgb(11, 204, 108);
-            transition: all 0.5s ease-in-out;
-        }
-
-        .form-progress-indicator {
-            position: absolute;
-            top: -6px;
-            left: 0;
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border: 3px solid #ddd;
-            border-radius: 50%;
-            transition: all .2s ease-in-out;
-            transition-delay: .3s;
-        }
-
-        .form-progress-indicator.one   { left: 0; }
-        .form-progress-indicator.two   { left: 33%; }
-        .form-progress-indicator.three { left: 66%; }  
-        .form-progress-indicator.four  { left: 100%; } 
-
-        .form-progress-indicator.active {
-            animation: bounce .5s forwards;
-            animation-delay: .5s;
-            border-color: rgb(11, 204, 108);
-        }
-
-        .animation-container {
-            position: relative;
-            width: 100%;
-            transition: .3s;
-            will-change: padding;
-            overflow: hidden;
-        }
-
-        .form-step {
-            position: absolute;
-            transition: 1s ease-in-out;
-            will-change: transform, opacity;
-        }
-
-        .form-step.leaving {
-            animation: left-and-out .5s forwards;
-        }
-
-        .form-step.waiting {
-            transform: translateX(400px);
-        }
-
-        .form-step.coming {
-            animation: right-and-in .5s forwards;
-        }
-
-        @keyframes left-and-out {
-            100% {
-                opacity: 0;
-                transform: translateX(-400px);
-            }
-        }
-
-        @keyframes right-and-in {
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes bounce {
-            50% {
-                transform: scale(1.5);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-    </style> -->
+  <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
 
 </head>
 
@@ -337,7 +105,10 @@ if (isset($_POST['logout'])) {
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="#footer">Track</a></li>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#featured-services">Application</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#contact">Contact</a></li>
             <li>
                 <form method="POST" action="">
                     <button type="submit" name="logout" 
@@ -359,131 +130,103 @@ if (isset($_POST['logout'])) {
   </header>
 
   <!-- <main class="main"> -->
-
-  <section>
-
-    <!-- partial:index.partial.html -->
-<div class="container d-flex justify-content-center pt-2">
+  <section id="featured-services" class="featured-services section">
+<div class="container">
+  <?php include('MultiStep.php');?>
 </div>
-<div class="container d-flex justify-content-center pt-2">
-  <button style="background-color: #DB504A;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" >Display features</button>
-</div>
-<div class="col-12 p-3 collapse" id="collapseExample">
-  <div class="card">
-    <div class="card-header font-weight-bold">Available features</div>
-    <div class="card-body">
-      <ul>
-        <li>Multi step form using Bootstrap 5, Jquery and CSS</li>
-        <li>Automatically percentage calculation of the progress bar</li>
-        <li><b>Step 1:</b> Add new user / Search existing user</li>
-        <ul>
-          <li>Option "Add new user"</li>
-          <ul>
-            <li>Abilty to click on Next button</li>
-          </ul>
-          <li>Option Search existing user</li>
-          <ul>
-            <li>Display input field, which is searchable</li>
-            <li>Next button is disabled until a available option is selected from the searchlist.</li>
-            <li>Next button will be deactivated when the selected value is being altered.</li>
-            <li>When a user is selected the step 2 form will be filled with all available data.</li>
-          </ul>
-        </ul>
-        <li><b>Step 2:</b> User information</li>
-        <ul>
-          <li>Input field "first name" and "last name" are required to advance to step 3.</li>
-          <li>When first and/or last name is empty an invalid warning will be displayed.</li>
-        </ul>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="container d-flex justify-content-center" style="min-width:720px!important">
-  <div class="col-11 col-offset-2">
-    <div class="progress mt-3" style="height: 30px;">
-      <div class="progress-bar progress-bar-striped progress-bar-animated" style="font-weight:bold; font-size:15px;" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <div class="card mt-3">
-      <div class="card-header font-weight-bold">My Bootstrap 5 multi-step-form</div>
-      <div class="card-body p-4 step">
-        <div class="radio-group row justify-content-between px-3 text-center" style="justify-content:center !important">
-          <div class="col-auto me-sm-2 mx-1 card-block py-0 text-center radio">
-            <div class="opt-icon"><i class="fas fa-user-plus" style="font-size: 80px; margin-left: 25px;"></i></div>
-            <p><b>Add new user</b></p>
-          </div>
-          <div id="suser" class="selected col-auto ms-sm-2 mx-1 card-block py-0 text-center radio">
-            <div class="opt-icon"><i class="fas fa-users" style="font-size: 80px;"></i></div>
-            <p><b>Search existing user</b></p>
-          </div>
-        </div>
-        <div class="searchfield text-center pb-1" style="font-size:12px">Search for example <b>Gary Hendren</b></div>
-        <div class="searchfield input-group px-5">
-          <span class="input-group-text" id="basic-addon1"><i class="fas fa-search text-white" aria-hidden="true"></i></span>
-          <input id="txt-search" class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </div>
-        <div id="filter-records" class="mx-5"></div>
-      </div>
-      <div id="userinfo" class="card-body p-4 step" style="display: none">
-        <div class="text-center">
-          <h5 class="card-title font-weight-bold pb-2">User information</h5>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-2"></div>
-          <div class="col-4">
-            <label for="fname">First Name<b style="color: #dc3545;">*</b></label>
-            <input type="text" name="name" class="form-control" id="fname" required>
-            <div class="invalid-feedback">This field is required</div>
-          </div>
-          <div class="col-4">
-            <label for="lname">Last Name<b style="color: #dc3545;">*</b></label>
-            <input type="text" class="form-control" id="lname" required>
-            <div class="invalid-feedback">This field is required</div>
-          </div>
-        </div>
-        <div class="form-group row pt-2">
-          <label for="team" class="col-2 text-end control-label col-form-label">Team</label>
-          <div class="col-8">
-            <input type="text" class="form-control" id="team">
-          </div>
-        </div>
-        <div class="form-group row pt-2">
-          <label for="address" class="col-2 text-end control-label col-form-label">Address</label>
-          <div class="col-8">
-            <input type="text" class="form-control" id="address">
-          </div>
-        </div>
-        <div class="form-group row pt-2">
-          <label for="tel" class="col-2 text-end control-label col-form-label">Tel/Gsm</label>
-          <div class="col-8">
-            <input type="text" class="form-control" id="tel">
-          </div>
-        </div>
-        <div class="text-center text-muted"><b style="color: #dc3545;">*</b> required fields</div>
-      </div>
-      <div class="card-body p-5 step" style="display: none">Step 3</div>
-      <div class="card-body p-5 step" style="display: none">Step 4</div>
-      <div class="card-body p-5 step" style="display: none">Step 5</div>
-      <div class="card-footer">
-        <button class="action back btn btn-sm btn-outline-warning" style="display: none">Back</button>
-        <button class="action next btn btn-sm btn-outline-secondary float-end" disabled="">Next</button>
-        <button class="action submit btn btn-sm btn-outline-success float-end" style="display: none">Submit</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-<br>
-<br>
-
+</section>
 <!-- partial -->
   
 </section>
+ <!-- Contact Section -->
+ <section id="contact" class="contact section">
+
+<!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+  <h2>Contact</h2>
+  <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+</div><!-- End Section Title -->
+
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+
+  <div class="row gy-4">
+
+    <div class="col-lg-5">
+
+      <div class="info-wrap">
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+          <i class="bi bi-geo-alt flex-shrink-0"></i>
+          <div>
+            <h3>Address</h3>
+            <p>Balayan Government Center, Balayan 4213 Batangas, Philippines</p>
+          </div>
+        </div><!-- End Info Item -->
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+          <i class="bi bi-telephone flex-shrink-0"></i>
+          <div>
+            <h3>Call Us</h3>
+            <p>+63 997 281 7807</p>
+          </div>
+        </div><!-- End Info Item -->
+
+        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+          <i class="bi bi-envelope flex-shrink-0"></i>
+          <div>
+            <h3>Email Us</h3>
+            <p>balayanbplo24@gmail.com</p>
+          </div>
+        </div><!-- End Info Item -->
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.6488531052264!2d120.72757761483093!3d13.940859490250837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd7a8f8ffb8e81%3A0xf2d83e05ebd6b6b7!2sBalayan%2C%20Batangas%2C%20Philippines!5e0!3m2!1sen!2sus!4v1689439459870!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+        <div class="row gy-4">
+
+          <div class="col-md-6">
+            <label for="name-field" class="pb-2">Your Name</label>
+            <input type="text" name="name" id="name-field" class="form-control" required="">
+          </div>
+
+          <div class="col-md-6">
+            <label for="email-field" class="pb-2">Your Email</label>
+            <input type="email" class="form-control" name="email" id="email-field" required="">
+          </div>
+
+          <div class="col-md-12">
+            <label for="subject-field" class="pb-2">Subject</label>
+            <input type="text" class="form-control" name="subject" id="subject-field" required="">
+          </div>
+
+          <div class="col-md-12">
+            <label for="message-field" class="pb-2">Message</label>
+            <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+          </div>
+
+          <div class="col-md-12 text-center">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your message has been sent. Thank you!</div>
+
+            <button type="submit">Send Message</button>
+          </div>
+
+        </div>
+      </form>
+    </div><!-- End Contact Form -->
+
+  </div>
+
+</div>
+
+</section
 
   <footer id="footer" class="footer">
 
-    <div class="footer-newsletter">
+    <!-- <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-6">
@@ -498,7 +241,7 @@ if (isset($_POST['logout'])) {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
@@ -585,11 +328,101 @@ if (isset($_POST['logout'])) {
 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js'></script>
 <!-- Multi-step Form JS -->
 <!-- <script src="js/bootstrap-multi-step-form.js"></script> -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
- 
+ <script>
+  $(document).ready(function() {
+  var currentStep = 0;
+  var steps = $(".step");
+  var indicators = $(".step-indicators .indicator");
+
+  function showStep(index) {
+      steps.removeClass("active");
+      $(steps[index]).addClass("active");
+      indicators.removeClass("completed");
+      indicators.each(function(i) {
+          if (i <= index) {
+              $(this).addClass("completed");
+          }
+      });
+  }
+
+  $(".btn-next").click(function() {
+      if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+      }
+  });
+
+  $(".btn-prev").click(function() {
+      if (currentStep > 0) {
+          currentStep--;
+          showStep(currentStep);
+      }
+  });
+
+  $("#multiStepForm").submit(function(event) {
+      event.preventDefault();
+      alert("Form submitted!");
+  });
+}); 
+
+const form = document.getElementById('multiStepForm');
+    const steps = Array.from(form.getElementsByClassName('step'));
+    const nextButtons = Array.from(form.getElementsByClassName('btn-next'));
+    const prevButtons = Array.from(form.getElementsByClassName('btn-prev'));
+    let currentStep = 0;
+
+    function showStep(step) {
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', index === currentStep);
+        });
+    }
+
+    nextButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            currentStep = Math.min(currentStep + 1, steps.length - 1);
+            showStep(currentStep);
+        });
+    });
+
+    prevButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            currentStep = Math.max(currentStep - 1, 0);
+            showStep(currentStep);
+        });
+    });
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const availabilityMWF = document.getElementById('availabilityMWF').checked;
+        const availabilityTTS = document.getElementById('availabilityTTS').checked;
+        const income = document.getElementById('income').value;
+
+        // Determine color coding based on survey responses
+        let colorCode = '';
+        if (availabilityMWF && !availabilityTTS) {
+            colorCode = 'Red';
+        } else if (!availabilityMWF && availabilityTTS) {
+            colorCode = 'Green';
+        } else {
+            colorCode = 'Not Determined'; // This can be adjusted based on additional criteria
+        }
+
+        alert(`Survey Submitted! Your tricycle's color code is: ${colorCode}`);
+
+        // Optionally, you can submit the form data to the server here
+    });
+
+    showStep(currentStep);
+ </script>
 </body>
 
 </html>

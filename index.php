@@ -1,3 +1,186 @@
+<?php
+session_start(); // Start the session
+
+// Check if user is already logged in
+if (isset($_SESSION['Email_Session'])) {
+    header("Location: welcome.php");
+    exit();
+}
+
+include('config.php');
+
+$msg = "";
+$Error_Pass = "";
+
+// Handle account verification
+if (isset($_GET['Verification'])) {
+    $verificationToken = mysqli_real_escape_string($conx, $_GET['Verification']);
+    $raquet = mysqli_query($conx, "SELECT * FROM user WHERE token='{$verificationToken}'");
+
+    if (mysqli_num_rows($raquet) > 0) {
+        $query = mysqli_query($conx, "UPDATE user SET active='1' WHERE token='{$verificationToken}'");
+        if ($query) {
+            $rowv = mysqli_fetch_assoc($raquet);
+            header("Location: welcome.php?id={$rowv['id']}");
+            exit();
+        } else {
+            header("Location: index.php");
+            exit();
+        }
+    } else {
+        header("Location: index.php");
+        exit();
+    }
+}
+
+// Handle user login
+if (isset($_POST['signin_submit'])) {
+    $input = mysqli_real_escape_string($conx, $_POST['username']); // Use a generic variable for input
+    $password = mysqli_real_escape_string($conx, md5($_POST['password']));
+
+    // Query to check if the input matches email or username
+    $sql = "SELECT * FROM user WHERE (email='{$input}' OR username='{$input}') AND password='{$password}'";
+    $result = mysqli_query($conx, $sql);
+
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        if ($row['active'] === '1') {
+            $_SESSION['Email_Session'] = $row['email']; // Store email in session
+            $_SESSION['role'] = $row['role']; // Save role in session
+            
+            // Redirect based on role
+            switch ($row['role']) {
+                case 'admin':
+                case 'verifier':
+                    header("Location: admin/index.php");
+                    break;
+                default:
+                    header("Location: welcome.php");
+            }
+            exit();
+        } else {
+            $msg = "<div class='alert alert-info'>Please verify your account first.</div>";
+        }
+    } else {
+        $msg = "<div class='alert alert-danger'>Email/Username or Password is incorrect.</div>";
+    }
+}
+
+// Handle user signup
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
+
+if (isset($_POST['signup_submit'])) {
+    $name = mysqli_real_escape_string($conx, $_POST['username']);
+    $email = mysqli_real_escape_string($conx, $_POST['email']);
+    $password = mysqli_real_escape_string($conx, md5($_POST['password']));
+    $Confirm_Password = mysqli_real_escape_string($conx, md5($_POST['conf_password']));
+    $token = md5(rand()); // Generate a unique verification code
+    $role = 'user'; // Default role
+
+    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM user WHERE email='{$email}'")) > 0) {
+        $msg = "<div class='alert alert-danger'>This Email: '{$email}' has already been registered.</div>";
+    } else {
+        if ($password === $Confirm_Password) {
+            $query = "INSERT INTO user(`email`, `password`, `username`, `token`, `active`, `role`) VALUES ('$email', '$password', '$name', '$token', '0', '$role')";
+            $result = mysqli_query($conx, $query);
+            
+            if ($result) {
+                // Create a verification link
+                $verificationLink = 'http://localhost/TricyclePermitMS/verify.php?Verification=' . $token;
+
+                // Send email
+                $mail = new PHPMailer(true);
+                try {
+                    //Server settings
+                    $mail->SMTPDebug = 0;
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'balayanbplo24@gmail.com';
+                    $mail->Password = 'tawn wged durl tngn';
+                    $mail->SMTPSecure = 'tls';
+                    $mail->Port = 587;
+
+                    $mail->SMTPOptions = array(
+                        'ssl' => array(
+                            'verify_peer' => false,
+                            'verify_peer_name' => false,
+                            'allow_self_signed' => true
+                        )
+                    );
+                    
+                    //Recipients
+                    $mail->setFrom('balayanbplo24@gmail.com', 'BPLO Balayan');
+                    $mail->addAddress($email, $name);
+                    //Content
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Welcome To My Website';
+                    $mail->Body = '<p>This is the Verification Link: <b><a href="' . $verificationLink . '">' . $verificationLink . '</a></b></p>';
+                    $mail->send();
+                    
+                    $msg = "<div class='alert alert-info'>A verification code has been sent to your email address.</div>";
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
+            } else {
+                $msg = "<div class='alert alert-danger'>Something went wrong with registration.</div>";
+            }
+        } else {
+            $msg = "<div class='alert alert-danger'>Password and Confirm Password do not match.</div>";
+            $Error_Pass = 'style="border:1px Solid red;box-shadow:0px 1px 11px 0px red"';
+        }
+    }
+}
+
+// Handle forget password
+if (isset($_POST['forget_submit'])) {
+    $email = mysqli_real_escape_string($conx, $_POST['email']);
+    $CodeReset = mysqli_real_escape_string($conx, md5(rand()));
+    if (mysqli_num_rows(mysqli_query($conx, "SELECT * FROM user WHERE email='{$email}'")) > 0) {
+        $query = mysqli_query($conx, "UPDATE user SET token='{$CodeReset}' WHERE email='{$email}'");
+        if ($query) {
+            $mail = new PHPMailer(true);
+
+            try {
+                //Server settings
+                $mail->SMTPDebug = 0;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'balayanbplo24@gmail.com';
+                $mail->Password = 'tawn wged durl tngn';
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
+
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+
+                //Recipients
+                $mail->setFrom('balayanbplo24@gmail.com', 'BPLO Balayan');
+                $mail->addAddress($email);
+                //Content
+                $mail->isHTML(true);
+                $mail->Subject = 'Password Reset Request';
+                $mail->Body = '<p>This is the Reset Link: <b><a href="http://localhost/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '">' . 'http://localhost/TricyclePermitMS/change-Password.php?Reset=' . $CodeReset . '</a></b></p>';
+                $mail->send();
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+            $msg = "<div class='alert alert-info'>We've sent a verification code to your email address</div>";
+        }
+    } else {
+        $msg = "<div class='alert alert-danger'>This email: '{$email}' was not found</div>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,14 +207,26 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    /* Custom styles for the modal */
+
+  </style>
 
 </head>
 
 <body class="index-page">
 
-  <header id="header" class="header sticky-top">
+  <header id="header" class="header sticky-top">  
 
     <div class="topbar d-flex align-items-center">
     </a>
@@ -65,11 +260,12 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#footer">Track</a></li>
-            <li><a href="SignIn.php">Sign In</a></li>
-            <li><a href="SignUp.php">
+            <li><a href="#" data-toggle="modal" data-target="#signInModal">Sign In</a></li>
+            <li><button type="button" class="btn transparent" data-toggle="modal" data-target="#signInModal">Sign Up</button></li>
+            <!-- <li><a href="SignUp.php">
               <button style="background-color: #DB504A; border: none; border-radius: 10px; padding: 10px 20px; font-size: 16px; color: #FFFFFF; cursor: pointer; border: 2px solid #DB504A;">
                 Sign Up
-              </button>
+              </button> -->
             </a></li>
           </ul>
           
@@ -462,6 +658,109 @@
 
   </main>
 
+<!-- Modal HTML -->
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="circle-container">
+          <div class="circle-content">
+          </div>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Sign Up Form (Default View) -->
+        <div id="signUpForm">
+          <form action="" method="POST" class="sign-in-form">
+            <h2 class="title">Sign Up</h2>
+            <?php echo $msg; ?>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="conf_password" placeholder="Confirm Password" required>
+            </div>
+            <input type="submit" class="btn" value="Sign Up" name="signup_submit">
+            <a href="#" class="back-to-signin" onclick="showSignInForm()"><i style="color: black;">Already a member? Click here </i>Sign In</a>
+            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Sign In Form -->
+        <div id="signInForm" style="display: none;">
+          <form action="" method="POST" class="sign-in-form">
+            <h2>Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="username" placeholder="Username" required>
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <a href="#" class="forgot-password" onclick="showForgetPasswordForm()">Forgot Password?</a>
+            <button type="submit" class="btn" name="signin_submit">Sign In</button>
+            <br>
+            <a href="#" class="signup" onclick="showSignUpForm()"><i style="color: black;">Don't have an account? Create an account</i>Sign Up</a>
+            <br>
+            <p>Or Sign in with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Forget Password Form -->
+        <div id="forgetPasswordForm" style="display: none;">
+          <form action="" method="POST" class="sign-in-form">
+            <h2 class="title">Forget Password</h2>
+            <?php echo $msg; ?>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="email" placeholder="Email" />
+            </div>
+            <input type="submit" name="forget_submit" value="Send" class="btn solid" />
+            <p class="social-text">Or Sign in with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </form>
+          <a href="#" class="back-to-signin" onclick="showSignInForm()">Back to Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- End of modal -->
+<div id="overlay" class="overlay" style="display: none;"></div>
   <footer id="footer" class="footer">
 
     <div class="footer-newsletter">

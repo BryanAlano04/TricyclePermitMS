@@ -10,7 +10,7 @@ if (!isset($_SESSION['Email_Session'])) {
 if (isset($_POST['logout'])) {
     session_unset();
     session_destroy();
-    header("Location: ../SignIn.php"); // Redirect to sign-in page after logout
+    header("Location: ../index.php"); // Redirect to sign-in page after logout
     exit();
 }
 
