@@ -17,7 +17,6 @@
 			<span class="text">Download PDF</span>
 		</a> -->
 	</div>
-
 	<ul class="box-info">
 		<li>
 			<i class='bx bxs-calendar-check' ></i>
@@ -26,13 +25,13 @@
 				<p>Approved Permit</p>
 			</span>
 		</li>
-		<li>
+		<!-- <li>
 			<i class='bx bxs-group' ></i>
 			<span class="text">
 				<h3>2078</h3>
 				<p>Total User</p>
 			</span>
-		</li>
+		</li> -->
 		<li>
 			<i class='bx bx-money' ></i>
 			<span class="text">
@@ -54,7 +53,7 @@
             <p>Red Permit</p>
         </span>
     </li>
-	</ul>
+</ul>
 
 	<!-- <ul class="box-info">
 <li>

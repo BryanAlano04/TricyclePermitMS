@@ -209,7 +209,7 @@ if (isset($_POST['forget_submit'])) {
 
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -217,11 +217,6 @@ if (isset($_POST['forget_submit'])) {
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-  <style>
-    /* Custom styles for the modal */
-
-  </style>
-
 </head>
 
 <body class="index-page">
@@ -260,7 +255,7 @@ if (isset($_POST['forget_submit'])) {
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#footer">Track</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#signInModal">Sign In</a></li>
+            <!-- <li><a href="#" data-toggle="modal" data-target="#signInModal">Sign In</a></li> -->
             <li><button type="button" class="btn transparent" data-toggle="modal" data-target="#signInModal">Sign Up</button></li>
             <!-- <li><a href="SignUp.php">
               <button style="background-color: #DB504A; border: none; border-radius: 10px; padding: 10px 20px; font-size: 16px; color: #FFFFFF; cursor: pointer; border: 2px solid #DB504A;">
@@ -393,7 +388,6 @@ if (isset($_POST['forget_submit'])) {
       </div>
 
     </section><!-- /About Section -->
-
     <!-- Skills Section -->
     <section id="skills" class="skills section">
 
@@ -429,7 +423,7 @@ if (isset($_POST['forget_submit'])) {
 
       </div>
 
-    </section><!-- /Skills Section -->
+    </section>
 
     <!-- Stats Section -->
     <section id="stats" class="stats section">
@@ -757,28 +751,35 @@ if (isset($_POST['forget_submit'])) {
   </div>
 </div>
 
+<section id="tracking" class="tracking section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Tracking</h2>
+        <p><span>Track Your</span> <span class="description-title">Application</span></p>
+      </div>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4 justify-content-center">
+          <div class="col-lg-8">
+            <form id="tracking-form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <input type="text" name="tracking_number" class="form-control" id="tracking_number" placeholder="Enter Tracking Number" required>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <button type="button" onclick="trackApplication()">Track</button>
+              </div>
+            </form>
+            <div id="tracking-result" class="mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
 
 <!-- End of modal -->
 <div id="overlay" class="overlay" style="display: none;"></div>
   <footer id="footer" class="footer">
-
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Track your permit</h4>
-            <p>Enter your tracking number to see the status of your application for tricycle permit.</p>
-            <form action="forms/newsletter.php" method="post" class="php-email-form">
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Track"></div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
@@ -854,17 +855,33 @@ if (isset($_POST['forget_submit'])) {
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-  <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <!-- Custom JS for Tracking -->
+  <script>
+    function trackApplication() {
+      const trackingNumber = document.getElementById('tracking_number').value;
+      const trackingResult = document.getElementById('tracking-result');
+
+      // Dummy tracking statuses for demonstration
+      const trackingData = {
+        'ABC123': 'Your application is under review.',
+        'DEF456': 'Your application has been approved.',
+        'GHI789': 'Your application has been rejected.',
+      };
+
+      if (trackingNumber in trackingData) {
+        trackingResult.innerHTML = '<div class="alert alert-success">' + trackingData[trackingNumber] + '</div>';
+      } else {
+        trackingResult.innerHTML = '<div class="alert alert-danger">Invalid tracking number. Please try again.</div>';
+      }
+    }
+  </script>
+
 
 </body>
 

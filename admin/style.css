@@ -362,60 +362,82 @@ body {
 
 
 
+/* Container for box info */
 #content main .box-info {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-	grid-gap: 24px;
-	margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 24px;
+    margin-top: 36px;
 }
+
+/* Styles for individual list items */
 #content main .box-info li {
-	padding: 24px;
-	background: var(--light);
-	border-radius: 20px;
-	display: flex;
-	align-items: center;
-	grid-gap: 24px;
+    padding: 24px;
+    background: var(--light);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
 }
+
+/* Styles for icons */
 #content main .box-info li .bx {
-	width: 80px;
-	height: 80px;
-	border-radius: 20px;
-	font-size: 36px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+/* Specific styles for each icon */
 #content main .box-info li:nth-child(1) .bx {
-	background: var(--light-blue);
-	color: var(--red);
+    background: var(--light-blue);
+    color: var(--red);
 }
+
+/* #content main .box-info li:nth-child(2) .bx {
+    background: var(--light-yellow);
+    color: var(--yellow);
+} */
+
 #content main .box-info li:nth-child(2) .bx {
-	background: var(--light-yellow);
-	color: var(--yellow);
+    background: var(--light-orange);
+    color: var(--orange);
 }
+
 #content main .box-info li:nth-child(3) .bx {
-	background: var(--light-orange);
-	color: var(--orange);
+    background: var(--light-green);
+    color: var(--green);
 }
+
 #content main .box-info li:nth-child(4) .bx {
-	background: var(--light-green);
-	color: var(--green);
+    background: var(--light-orange);
+    color: var(--red);
 }
+
 #content main .box-info li:nth-child(5) .bx {
-	background: var(--light-orange);
-	color: var(--red);
+    background: var(--light-orange);
+    color: var(--orange);
 }
-#content main .box-info li:nth-child(6) .bx {
-	background: var(--light-orange);
-	color: var(--orange);
-}
+
+/* Styles for text elements */
 #content main .box-info li .text h3 {
-	font-size: 24px;
-	font-weight: 600;
-	color: var(--dark);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--dark);
 }
+
 #content main .box-info li .text p {
-	color: var(--dark);	
+    color: var(--dark);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    #content main .box-info {
+        grid-template-columns: 1fr; /* Stacks items vertically */
+    }
 }
 
 
@@ -483,28 +505,51 @@ body {
 #content main .table-data .order table tbody tr:hover {
 	background: var(--grey);
 }
+/* Status styles */
 #content main .table-data .order table tr td .status {
-	font-size: 10px;
-	padding: 6px 16px;
-	color: var(--light);
-	border-radius: 20px;
-	font-weight: 700;
+    font-size: 10px;
+    padding: 6px 16px;
+    color: var(--light);
+    border-radius: 20px;
+    font-weight: 700;
+    display: inline-block;
 }
+
 #content main .table-data .order table tr td .status.completed {
-	background: var(--blue);
+    background: var(--blue);
 }
+
 #content main .table-data .order table tr td .status.process {
-	background: var(--yellow);
+    background: var(--yellow);
 }
+
 #content main .table-data .order table tr td .status.pending {
-	background: var(--red);
+    background: var(--red);
 }
+
 #content main .table-data .order table tr td .status.active {
-	background: var(--blue);
+    background: var(--blue);
 }
+
 #content main .table-data .order table tr td .status.inactive {
-	background: var(--red);
+    background: var(--red);
 }
+
+/* Dropdown styles */
+#content main .table-data .order table tr td .status-dropdown {
+    font-size: 10px;
+    padding: 6px 16px;
+    border: none; /* Remove border */
+    border-radius: 20px; /* Match the border-radius of status */
+    background-color: #fff; /* Placeholder color, will be updated by JavaScript */
+    color: #fff; /* Font color white */
+    margin-left: 10px; /* Adjust spacing from the status */
+    width: auto; /* Adjust width as needed */
+    text-align: center; /* Center text */
+    appearance: none; /* Remove default appearance */
+    cursor: pointer; /* Pointer cursor for better UX */
+}
+
 
 
 #content main .table-data .todo {
@@ -719,4 +764,32 @@ canvas {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Modal Overlay */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* Allows scrolling on the overlay if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    font-family: var(--poppins);
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Adjusted to center the modal better */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    max-width: 800px; /* Max width for larger screens */
+    max-height: 80vh; /* Limits height of the modal */
+    overflow-y: auto; /* Allows vertical scrolling within modal */
+    border-radius: 20px;
+    position: relative; /* Ensure positioning context for close button */
 }

@@ -16,24 +16,6 @@ if (isset($_POST['logout'])) {
 }
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-<body>
-    <div>
-        <h1>Welcome, <php echo $_SESSION['Email_Session']; ?></h1>
-        <form method="POST" action="">
-            <input type="submit" name="logout" value="Logout">
-        </form>
-    </div>
-</body>
-</html> -->
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +54,59 @@ if (isset($_POST['logout'])) {
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
   <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
+
+  <style>
+        /* Table styling */
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+    
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    
+    td img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+    
+    .status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .status.completed {
+        background-color: #DB504A;
+        color: #fff;
+    }
+    
+    .status.pending {
+        background-color: #FD7238;
+        color: #fff;
+    }
+
+  </style>
 
 </head>
 
@@ -129,14 +164,67 @@ if (isset($_POST['logout'])) {
 
   </header>
 
-  <!-- <main class="main"> -->
-  <section id="featured-services" class="featured-services section">
-<div class="container">
-  <?php include('MultiStep.php');?>
+<!-- Hero Section -->
+<section id="hero" class="hero section light-background" style="min-height: 45vh;">
+  <div class="container">
+  <?php include('home.php');?>
+  </div>  
+</section>
+<section>
+    <div class="container">
+        <div class="row gy-12">
+        <table style="align-items: center;">
+            <thead>
+                <tr>
+                    <th>Transaction</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <p>Tricycle Permit</p>
+                </td>
+                <td>01-10-2024</td>
+                <td><span class="status completed">pending</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Tricycle Permit</p>
+                </td>
+                <td>01-10-2023</td>
+                <td><span class="status pending">Completed</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </section>
-<!-- partial -->
-  
+
+<div class="container section-title" data-aos="fade-up">
+  <h2>Application</h2>
+  <p><span>Apply now!</span> <span class="description-title">Application for Tricycle Permit</span></p>
+</div>
+<section id="featured-services" class="featured-services section">
+<main">  
+<div class="container">
+<div class="multi-step-form">
+    <?php include('MultiStep.php');?>
+  <hr>
+  </div>
+  </div>
+</main>
+</section>
+
+
+<div class="container section-title" data-aos="fade-up">
+  <h2>Profile</h2>
+  <p><span>Edit your</span> <span class="description-title">User Profile</span></p>
+</div>
+<section id="profile" class="featured-services section">
+  <?php include('profile.php');?>
+<hr>
 </section>
  <!-- Contact Section -->
  <section id="contact" class="contact section">
@@ -222,26 +310,8 @@ if (isset($_POST['logout'])) {
 
 </div>
 
-</section
-
+</section>
   <footer id="footer" class="footer">
-
-    <!-- <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Track your permit</h4>
-            <p>Enter your tracking number to see the status of your application for tricycle permit.</p>
-            <form action="forms/newsletter.php" method="post" class="php-email-form">
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Track"></div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="container footer-top">
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">

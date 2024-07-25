@@ -109,7 +109,64 @@
             background-color: #c0c0c0;
             cursor: not-allowed;
         }
-    </style>
+        .multi-step-form {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .step-indicators {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .step-indicators .indicator .icon {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+        }
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
+        .btn-next, .btn-prev {
+            background-color: #DB504A;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn-prev {
+            background-color: #ccc;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .form-group .form-label {
+            flex: 1 1 100%;
+            margin-bottom: 5px;
+        }
+        .form-group .form-control {
+            flex: 1 1 calc(50% - 10px);
+            margin-right: 10px;
+        }
+        .form-group .form-control:last-child {
+            margin-right: 0;
+        }
+</style>
 </head>
 <body>
     <main>
@@ -122,7 +179,7 @@
                     <li><a class="active" href="#">Home</a></li>
                 </ul>
             </div>
-            <a href="#" class="btn-download" id="add-applicants-btn" data-toggle="modal" data-target="#exampleModal">
+            <a href="#" class="btn-download" id="add-applicants-btn">
                 <i class='bx bx-user-plus'></i>
                 <span class="text">Add Applicants</span>
             </a>
@@ -144,97 +201,119 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Table rows here -->
+                    <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status completed">Completed</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" id="add-applicants-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" id="add-applicants-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status pending">Pending</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status process">Process</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status pending">Pending</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="img/profileko.png">
+                    <p>Bryan Alano</p>
+                </td>
+                <td>01-10-2021</td>
+                <td><span class="status completed">Completed</span></td>
+                <td class="action-cell">
+                    <button class="action-btn view-btn" title="View"><i class="bx bx-show view-icon"></i></button>
+                    <button class="action-btn update-btn" title="Update"><i class="bx bxs-edit-alt update-icon"></i></button>
+                    <button class="action-btn delete-btn" title="Delete"><i class="bx bx-trash delete-icon"></i></button>
+                </td>
+            </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Smart Wizard Modal</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="smartwizard">
-                        <ul>
-                            <li><a href="#step-1">Step 1<br /><small>Account Info</small></a></li>
-                            <li><a href="#step-2">Step 2<br /><small>Personal Info</small></a></li>
-                            <li><a href="#step-3">Step 3<br /><small>Payment Info</small></a></li>
-                            <li><a href="#step-4">Step 4<br /><small>Confirm Details</small></a></li>
-                        </ul>
-                        <div class="mt-4">
-                            <div id="step-1">
-                                <div class="row">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Name" required></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Email" required></div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Password" required></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Repeat Password" required></div>
-                                </div>
-                            </div>
-                            <div id="step-2">
-                                <div class="row">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Address" required></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="City" required></div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="State" required></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Country" required></div>
-                                </div>
-                            </div>
-                            <div id="step-3">
-                                <div class="row">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Card Number" required></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Card Holder Name" required></div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="CVV" required></div>
-                                    <div class="col-md-6"><input type="text" class="form-control" placeholder="Mobile Number" required></div>
-                                </div>
-                            </div>
-                            <div id="step-4">
-                                <div class="row">
-                                    <div class="col-md-12"><span>Thanks For submitting your details. We will send you a confirmation email and review your details.</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Overlay -->
+<div id="overlay" class="overlay" style="display: none;"></div>
 
+<!-- Modal -->
+<div id="add-applicants-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <?php include('../MultiStep.php');?>
+    </div>
+</div>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Include Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Include Smart Wizard JS -->
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.smartWizard.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#smartwizard').smartWizard({
-                selected: 0,
-                theme: 'arrows',
-                autoAdjustHeight: true,
-                transitionEffect: 'fade',
-                showStepURLhash: false,
-                toolbarSettings: {
-                    toolbarPosition: 'bottom',
-                    toolbarButtonPosition: 'right',
-                    showNextButton: true,
-                    showPreviousButton: true,
-                    toolbarExtraButtons: []
-                }
-            });
-        });
-    </script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const steps = document.querySelectorAll('.step');
+    const nextBtns = document.querySelectorAll('.btn-next');
+    const prevBtns = document.querySelectorAll('.btn-prev');
+    let currentStep = 0;
+
+    function showStep(stepIndex) {
+      steps.forEach((step, index) => {
+        step.classList.toggle('active', index === stepIndex);
+      });
+    }
+
+    nextBtns.forEach(btn => btn.addEventListener('click', () => {
+      currentStep = Math.min(currentStep + 1, steps.length - 1);
+      showStep(currentStep);
+    }));
+
+    prevBtns.forEach(btn => btn.addEventListener('click', () => {
+      currentStep = Math.max(currentStep - 1, 0);
+      showStep(currentStep);
+    }));
+
+    showStep(currentStep);
+  });
+</script>
 </body>
 </html>

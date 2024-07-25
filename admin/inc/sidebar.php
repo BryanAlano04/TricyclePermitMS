@@ -6,6 +6,8 @@ if (!isset($_SESSION['Email_Session'])) {
     exit();
 }
 
+$currentUserRole = $_SESSION['role'];
+
 // Logout functionality
 if (isset($_POST['logout'])) {
     session_unset();
@@ -41,12 +43,14 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
                 <span class="text">Documents</span>
             </a>
         </li>
-        <li>
-            <a href="#">
+        <?php if ($currentUserRole !== 'verifier'): ?>
+        <li class="<?php echo $current_page == 'charts' ? 'active' : ''; ?>">
+            <a href="index.php?page=charts">
                 <i class='bx bxs-doughnut-chart'></i>
                 <span class="text">Charts</span>
             </a>
         </li>
+        <?php endif; ?>
         <li class="<?php echo $current_page == 'permit' ? 'active' : ''; ?>">
             <a href="index.php?page=permit">
                 <i class='bx bxs-message-dots'></i>
